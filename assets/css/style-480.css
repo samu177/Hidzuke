@@ -1,0 +1,8 @@
+@media only screen and (max-width: 480px) {
+  .login {
+    height: 500px;
+    width: 280px;
+    margin-top: -250px;
+    margin-right: -140px;
+  }
+}
