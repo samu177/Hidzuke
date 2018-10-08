@@ -1,9 +1,53 @@
 /* F9B24C */
-
+/*Utils*/
 body{
   margin: auto;
   background-color: #FFD69B;
 }
+
+.language{
+  position: relative;
+  float: right;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+}
+
+.underline::after{
+  content: " ";
+  border-bottom: 2px solid #B6720E;
+  margin-top: 5px;
+  display: block;
+}
+
+.links{
+  width: 100%;
+}
+
+.nounderline{
+  text-decoration: none;
+}
+
+/*Logo*/
+.logo{
+  margin-top: 50px;
+}
+
+.logo-top img{
+  display: block;
+  width: 100%;
+  margin: 15px;
+}
+
+.logo img{
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*Login/Sign In*/
 
 .login {
   background-color: white;
@@ -19,36 +63,109 @@ body{
   -moz-box-shadow: 0px 0px 10px 3px rgba(17,68,118,0.6);
   box-shadow: 0px 0px 10px 3px rgba(17,68,118,0.6);
 }
-.language{
-  position: relative;
-  float: right;
-  margin: auto;
-  width: 40px;
-  height: 40px;
-}
-
-.logo{
-  margin-top: 50px;
-}
-
-.logo img{
-  position: relative;
-  width: 200px;
-  height: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .login-form{
   margin-top: 15px;
-  padding: 25px;
+  padding: 25px 25px 20px;
 }
+#signin .login-form{
+  margin-top: 0;
+  padding-top: 20px;
+}
+
+#signin .login{
+  height: 550px;
+}
+
 .login-form .btn-login{
   width: 85%;
   height: 10%;
   margin: 25px auto 0;
   display: block;
 }
+
+
+/*Main*/
+
+#main{
+  max-width: none;
+  margin: auto 0;
+  padding: 0;
+  height: 100%;
+}
+#main .row{
+  height: 100%;
+  margin: 0px;
+}
+
+/*Add*/
+.add{
+  display: block;
+  padding: 0;
+  border-right: 2px dashed #B6720E;
+}
+
+a.add-link{
+  color: black;
+}
+
+a.add-link:hover{
+  color: #205D97;
+}
+
+.btn-add{
+  position: absolute;
+  display: block;
+  margin: auto;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+}
+
+.btn-add .fas{
+  font-size: 10em;
+  margin: -4.5rem;
+}
+
+/*View List*/
+.view-list{
+  display: block;
+  padding: 0;
+}
+
+/*Header*/
+.header{
+  width: 100%;
+  height: 100px;
+  border-bottom: 10px solid #B6720E;
+}
+
+.header div{
+  height: 100%;
+}
+
+.header img{
+  height: 80%;
+  margin-top: 10px;
+}
+.header .log{
+  position: absolute;
+  display: block;
+  margin: auto;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+}
+
+.header .log .fas{
+  font-size: 2.5em;
+  margin: -1rem;
+}
+
+/*Btn*/
+
 .btn-login {
   color: #ffffff;
   background-color: #3A6FA2;
