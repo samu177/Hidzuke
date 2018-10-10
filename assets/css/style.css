@@ -27,6 +27,9 @@ body{
 .nounderline{
   text-decoration: none;
 }
+.nounderline:hover{
+  text-decoration: none;
+}
 
 /*Logo*/
 .logo{
@@ -45,6 +48,9 @@ body{
   height: 100px;
   margin-left: auto;
   margin-right: auto;
+}
+.white{
+  color: white!important;
 }
 
 /*Login/Sign In*/
@@ -162,6 +168,114 @@ a.add-link:hover{
 .header .log .fas{
   font-size: 2.5em;
   margin: -1rem;
+}
+
+/*Card*/
+.cardList{
+  margin-top: 20px;
+}
+
+.cardList .row{
+  height: 75px!important;
+}
+
+.card > * {
+  vertical-align: middle;
+}
+
+.card{
+  color: white;
+  background-color: #F9B24C;
+  border: 2px solid #B6720E;
+}
+
+.card.owner{
+  color: white;
+  background-color: #88AFD5;
+  border: 2px solid #114476;
+}
+.card{
+  height: 75px;
+  margin: 0.5em 1.5em;
+}
+
+.month{
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+.day{
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+}
+.card-calendar-icon{
+  display: block;
+  text-align: center;
+}
+.card-calendar-icon .far{
+  font-size: 2.5em;
+}
+
+
+/*View*/
+#view{
+  max-width: none;
+  margin: auto 0;
+  padding: 0;
+  height: 100%;
+}
+#view .row{
+  margin: 0px;
+}
+
+.table-container{
+  margin: 30px;
+  background-color: #E89823;
+  width: 100%;
+  max-height: 80%;
+  border-radius: 16px 16px 16px 16px;
+  -moz-border-radius: 16px 16px 16px 16px;
+  -webkit-border-radius: 16px 16px 16px 16px;
+}
+
+.table-container .title{
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+}
+.table-container .subtitle{
+  display: block;
+  text-align: center;
+  color: white;
+}
+
+.table-container table {
+  table-layout: fixed;
+  margin: 15px auto;
+}
+
+.table-container table th, td{
+  background-color: #FFC570;
+  border: 1px solid #3A6FA2;
+}
+
+.table-container table th{
+  padding: 10px 40px;
+}
+
+.table-container table td{
+  padding: 40px 40px;
+}
+
+.table-container table tr th:first-child{
+  border: none;
+  background-color: inherit;
+}
+
+.table-container table tr td:not(:first-child){
+  background-color: #88AFD5;
 }
 
 /*Btn*/
