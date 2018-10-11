@@ -179,24 +179,25 @@ a.add-link:hover{
   height: 75px!important;
 }
 
-.card > * {
-  vertical-align: middle;
-}
-
 .card{
+  height: 75px;
+  margin: 0.5em 1.5em;
   color: white;
   background-color: #F9B24C;
   border: 2px solid #B6720E;
 }
+.card:hover{
+  background-color: #E89922;
+}
 
 .card.owner{
   color: white;
-  background-color: #88AFD5;
+  background-color: #598AB9;
   border: 2px solid #114476;
 }
-.card{
-  height: 75px;
-  margin: 0.5em 1.5em;
+
+.card.owner:hover{
+  background-color: #3A6FA2;
 }
 
 .month{
