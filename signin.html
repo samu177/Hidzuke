@@ -1,13 +1,17 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mdb.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style-992.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style-768.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style-480.css">
   <link rel="stylesheet" type="text/css" href="assets/css/flag-icon.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/js/popper.min.js"></script>
 </head>
 <body>
   <div id="signin" class="container">
@@ -26,8 +30,13 @@
           <h3 class="underline">Sign In Data:</h3>
         </div>
         <div class="form-group">
+          <label for="exampleInputName">Nombre</label>
+          <input type="text" class="form-control" id="exampleInputName" placeholder="Enter name">
+        </div>
+        <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">        </div>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
@@ -36,9 +45,10 @@
           <label for="exampleInputPassword2">Confirm Password</label>
           <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary btn-login">Submit</button>
+        <button type="submit" class="btn btn-custom-blue btn-login">Submit</button>
       </form>
     </div>
   </div>
+  <script type="text/javascript" src="assets/js/mdb.js"></script>
 </body>
 </html>

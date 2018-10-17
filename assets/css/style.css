@@ -49,7 +49,7 @@ body{
   margin-left: auto;
   margin-right: auto;
 }
-.white{
+.color-white{
   color: white!important;
 }
 
@@ -80,12 +80,12 @@ body{
 }
 
 #signin .login{
-  height: 550px;
+  height: 625px;
+  top: 40%;
 }
 
 .login-form .btn-login{
   width: 85%;
-  height: 10%;
   margin: 25px auto 0;
   display: block;
 }
@@ -105,11 +105,27 @@ body{
 }
 
 /*Add*/
+#add{
+  display: block;
+}
+
 .add{
   display: block;
   padding: 0;
-  border-right: 2px dashed #B6720E;
+  border-right: 2px dashed #FFD69B;
+  background: url(../img/fondo.png);
+  background-size: cover;
+  background-position: right;
 }
+
+.add-md{
+   display: none;
+   height: 150px!important;
+   padding: 0;
+   background: url(../img/fondo.png);
+   background-size: cover;
+   background-position: right;
+ }
 
 a.add-link{
   color: black;
@@ -120,18 +136,43 @@ a.add-link:hover{
 }
 
 .btn-add{
-  position: absolute;
-  display: block;
   margin: auto;
-  left: 50%;
-  right: 50%;
-  top: 50%;
-  bottom: 50%;
+  color: white;
+  text-shadow: 5px 5px #000;
 }
 
-.btn-add .fas{
-  font-size: 10em;
-  margin: -4.5rem;
+.btn-add:hover{
+  color: #205D97;
+  text-shadow: 5px 5px #000;
+}
+
+.add .btn-add .fas{
+  font-size: 13em;
+}
+.add-md .btn-add .fas{
+  font-size: 8em;
+}
+
+/* Modals */
+.modal-dialog{
+  width: 50%!important;
+  max-width: 50%!important;
+}
+.modal-content{
+  background-color: #e5eef6;
+}
+.modal-header{
+  height: 100px;
+  border-bottom: 10px solid #114476;
+}
+.modal-title{
+  color: #114476;
+  font-weight: bolder;
+  line-height: 2.5;
+}
+
+.modal-header .close{
+  font-size: 3.5rem;
 }
 
 /*View List*/
@@ -200,6 +241,11 @@ a.add-link:hover{
   background-color: #3A6FA2;
 }
 
+.date-group{
+  padding: 0;
+  padding-right: 7px;
+}
+
 .month{
   display: block;
   font-weight: bold;
@@ -233,7 +279,8 @@ a.add-link:hover{
 
 .table-container{
   margin: 30px;
-  background-color: #E89823;
+  background-color: white;
+  border: 3px solid #E89823;
   width: 100%;
   max-height: 80%;
   border-radius: 16px 16px 16px 16px;
@@ -241,12 +288,24 @@ a.add-link:hover{
   -webkit-border-radius: 16px 16px 16px 16px;
 }
 
-.table-container .title{
+.table-container-header{
+  height: 100px;
+  background-color: #E89823;
+  display: grid;
+  -webkit-border-top-left-radius: 11px;
+  -webkit-border-top-right-radius: 11px;
+  -moz-border-radius-topleft: 11px;
+  -moz-border-radius-topright: 11px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+}
+
+.table-container-header .title{
   text-align: center;
   margin-top: 10px;
   color: white;
 }
-.table-container .subtitle{
+.table-container-header .subtitle{
   display: block;
   text-align: center;
   color: white;
@@ -281,48 +340,98 @@ a.add-link:hover{
 
 /*Btn*/
 
-.btn-login {
+.btn-custom-blue {
   color: #ffffff;
   background-color: #3A6FA2;
   border-color: #205D97;
 }
 
-.btn-login:hover,
-.btn-login:focus,
-.btn-login:active,
-.btn-login.active,
-.open .dropdown-toggle.btn-login {
+.btn-custom-blue:hover,
+.btn-custom-blue:focus,
+.btn-custom-blue:active,
+.btn-custom-blue.active,
+.open .dropdown-toggle.btn-custom-blue {
   color: #ffffff;
   background-color: #114476;
   border-color: #205D97;
 }
 
-.btn-login:active,
-.btn-login.active,
-.open .dropdown-toggle.btn-login {
+.btn-custom-blue:active,
+.btn-custom-blue.active,
+.open .dropdown-toggle.btn-custom-blue {
   background-image: none;
 }
 
-.btn-login.disabled,
-.btn-login[disabled],
-fieldset[disabled] .btn-login,
-.btn-login.disabled:hover,
-.btn-login[disabled]:hover,
-fieldset[disabled] .btn-login:hover,
-.btn-login.disabled:focus,
-.btn-login[disabled]:focus,
-fieldset[disabled] .btn-login:focus,
-.btn-login.disabled:active,
-.btn-login[disabled]:active,
-fieldset[disabled] .btn-login:active,
-.btn-login.disabled.active,
-.btn-login[disabled].active,
-fieldset[disabled] .btn-login.active {
+.btn-custom-blue.disabled,
+.btn-custom-blue[disabled],
+fieldset[disabled] .btn-custom-blue,
+.btn-custom-blue.disabled:hover,
+.btn-custom-blue[disabled]:hover,
+fieldset[disabled] .btn-custom-blue:hover,
+.btn-custom-blue.disabled:focus,
+.btn-custom-blue[disabled]:focus,
+fieldset[disabled] .btn-custom-blue:focus,
+.btn-custom-blue.disabled:active,
+.btn-custom-blue[disabled]:active,
+fieldset[disabled] .btn-custom-blue:active,
+.btn-custom-blue.disabled.active,
+.btn-custom-blue[disabled].active,
+fieldset[disabled] .btn-custom-blue.active {
   background-color: #3A6FA2;
   border-color: #205D97;
 }
 
-.btn-login .badge {
+.btn-custom-blue .badge {
   color: #3A6FA2;
   background-color: #ffffff;
+}
+
+.btn-custom-orange {
+  color: #ffffff;
+  background-color: #F9B24C;
+  border-color: #B6720E;
+}
+
+.btn-custom-orange:hover,
+.btn-custom-orange:focus,
+.btn-custom-orange:active,
+.btn-custom-orange.active,
+.open .dropdown-toggle.btn-custom-orange {
+  color: #ffffff;
+  background-color: #E89823;
+  border-color: #B6720E;
+}
+
+.btn-custom-orange:active,
+.btn-custom-orange.active,
+.open .dropdown-toggle.btn-custom-orange {
+  background-image: none;
+}
+
+.btn-custom-orange.disabled,
+.btn-custom-orange[disabled],
+fieldset[disabled] .btn-custom-orange,
+.btn-custom-orange.disabled:hover,
+.btn-custom-orange[disabled]:hover,
+fieldset[disabled] .btn-custom-orange:hover,
+.btn-custom-orange.disabled:focus,
+.btn-custom-orange[disabled]:focus,
+fieldset[disabled] .btn-custom-orange:focus,
+.btn-custom-orange.disabled:active,
+.btn-custom-orange[disabled]:active,
+fieldset[disabled] .btn-custom-orange:active,
+.btn-custom-orange.disabled.active,
+.btn-custom-orange[disabled].active,
+fieldset[disabled] .btn-custom-orange.active {
+  background-color: #F9B24C;
+  border-color: #B6720E;
+}
+
+.btn-custom-orange .badge {
+  color: #F9B24C;
+  background-color: #ffffff;
+}
+
+.btn-login {
+  font-size: 1.25em;
 }

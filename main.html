@@ -1,23 +1,29 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/mdb.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style-992.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style-768.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style-480.css">
   <link rel="stylesheet" type="text/css" href="assets/css/flag-icon.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/js/popper.min.js"></script>
 </head>
 <body>
   <div id="main" class="container">
     <div class="row">
-      <div class="col-md-6 add">
-        <a class="nounderline add-link" href="#">
-          <span class="btn-add">
-            <i class="fas fa-plus-square"></i>
-          </span>
-        </a>
+      <div id="add" class="col-md-6 add">
+        <div class="row align-items-center">
+          <a class="nounderline add-link btn-add" href="#" data-toggle="modal" data-target="#fullHeightModalLeft">
+            <span class="btn-add">
+              <i class="fas fa-plus-square"></i>
+            </span>
+          </a>
+        </div>
       </div>
       <div class="col-md-6 view-list">
         <div class="header">
@@ -34,19 +40,30 @@
             </div>
           </div>
         </div>
+        <div id="add-small" class="row add-md">
+          <div class="col-md-6">
+            <div class="row align-items-center">
+              <a class="nounderline add-link btn-add" href="#" data-toggle="modal" data-target="#fullHeightModalLeft">
+                <span class="btn-add">
+                  <i class="fas fa-plus-square"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          </div>
         <div class="cardList">
           <a class="nounderline" href="#">
             <div class="card owner">
               <div class="row align-items-center">
-                <div class="col-md-1">
-                  <span class="white card-calendar-icon">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
                     <i class="far fa-calendar-alt"></i>
                   </span>
                 </div>
-                <div class="col-md-8">
+                <div class="col-8">
                   <span>Lorem Impum dolor set </span>
                 </div>
-                <div class="col-md-2">
+                <div class="col-2 date-group">
                   <small class="month">Enero</small>
                   <span class="day">13</span>
                 </div>
@@ -57,15 +74,15 @@
           <a class="nounderline" href="#">
             <div class="card">
               <div class="row align-items-center">
-                <div class="col-md-1">
-                  <span class="white card-calendar-icon">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
                     <i class="far fa-calendar-alt"></i>
                   </span>
                 </div>
-                <div class="col-md-8">
+                <div class="col-8">
                   <span>Lorem Impum dolor set </span>
                 </div>
-                <div class="col-md-2">
+                <div class="col-2 date-group">
                   <small class="month">Enero</small>
                   <span class="day">13</span>
                 </div>
@@ -76,7 +93,55 @@
         </div>
       </div>
     </div>
-
   </div>
+
+  <!-- Full Height Modal Left -->
+  <div class="modal fade left" id="fullHeightModalLeft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Add class .modal-full-height and then add class .modal-left (or other classes from list above) to set a position to the modal -->
+    <div class="modal-dialog modal-full-height modal-left" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="myModalLabel">Añadir evento</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="poll-title">Titulo</label>
+              <input type="text" class="form-control" id="poll-title" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+              <label for="poll-description">Descripción</label>
+              <input type="text" class="form-control" id="poll-description" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label for="poll-date-init">Fecha Inicio</label>
+              <input type="date" class="form-control" id="poll-date-init">
+            </div>
+            <div class="form-group">
+              <label for="poll-date-end">Fecha Fin</label>
+              <input type="date" class="form-control" id="poll-date-end">
+            </div>
+            <div class="form-group">
+              <label for="poll-hour-init">Hora Inicio</label>
+              <input type="time" class="form-control" id="poll-hour-init">
+            </div>
+            <div class="form-group">
+              <label for="poll-hour-end">Hora Fin</label>
+              <input type="time" class="form-control" id="poll-hour-end">
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-custom-orange" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-custom-blue">Crear Evento</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Full Height Modal Left -->
+  <script type="text/javascript" src="assets/js/mdb.js"></script>
 </body>
 </html>

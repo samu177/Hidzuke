@@ -1,8 +1,17 @@
-@media only screen and (max-width: 480px) {
+@media(max-width: 480px) {
   .login {
     height: 500px;
     width: 280px;
     margin-top: -250px;
     margin-right: -140px;
   }
+  .modal-footer{
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .modal-footer .btn{
+    width: 100%;
+    margin: 10px 4px;
+  }
+
 }
