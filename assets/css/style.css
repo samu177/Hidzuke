@@ -3,6 +3,7 @@
 body{
   margin: auto;
   background-color: #FFD69B;
+  overflow-y: hidden;
 }
 
 .language{
@@ -214,15 +215,21 @@ a.add-link:hover{
 /*Card*/
 .cardList{
   margin-top: 20px;
+  max-height: 75%;
+  overflow-x: auto;
 }
 
 .cardList .row{
   height: 75px!important;
 }
 
+.card-link{
+  display: block;
+  margin: 0.5em 1.5em;
+}
+
 .card{
   height: 75px;
-  margin: 0.5em 1.5em;
   color: white;
   background-color: #F9B24C;
   border: 2px solid #B6720E;

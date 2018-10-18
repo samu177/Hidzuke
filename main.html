@@ -1,6 +1,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/mdb.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -9,6 +10,9 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style-480.css">
   <link rel="stylesheet" type="text/css" href="assets/css/flag-icon.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <!-- styles needed by jScrollPane -->
+  <link type="text/css" href="assets/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+  
   <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
@@ -52,7 +56,7 @@
           </div>
           </div>
         <div class="cardList">
-          <a class="nounderline" href="#">
+          <a class="nounderline card-link" href="#">
             <div class="card owner">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -71,7 +75,45 @@
               </div>
             </div>
           </a>
-          <a class="nounderline" href="#">
+          <a class="nounderline card-link" href="#">
+            <div class="card owner">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+          
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card owner">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+          
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -86,7 +128,132 @@
                   <small class="month">Enero</small>
                   <span class="day">13</span>
                 </div>
-
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="nounderline card-link" href="#">
+            <div class="card">
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span>Lorem Impum dolor set </span>
+                </div>
+                <div class="col-2 date-group">
+                  <small class="month">Enero</small>
+                  <span class="day">13</span>
+                </div>
               </div>
             </div>
           </a>
@@ -143,5 +310,15 @@
   </div>
   <!-- Full Height Modal Left -->
   <script type="text/javascript" src="assets/js/mdb.js"></script>
+  <!-- the mousewheel plugin - optional to provide mousewheel support -->
+  <script type="text/javascript" src="assets/js/jquery.mousewheel.js"></script>
+  
+  <!-- the jScrollPane script -->
+  <script type="text/javascript" src="assets/js/jquery.jscrollpane.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+         $('.cardList').jScrollPane();
+      });
+  </script>
 </body>
 </html>
