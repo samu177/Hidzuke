@@ -5,16 +5,30 @@
   #add-small{
     display: block;
   }
-
-  .modal-dialog{
+  #main .modal-dialog{
     margin: 0;
     width: 100%!important;
     max-width: 100%!important;
     height: 100%!important;
     max-height: 100%!important;
   }
-  .modal-content{
+  #main .modal-content{
       height: 100%;
+  }
+
+  .header-md{
+    border: none!important;
+    background: none!important;
+  }
+
+  .poll-view-title{
+    margin: 25px auto;
+    font-weight: bolder;
+    color: white;
+  }
+
+  .poll-view-description{
+    margin: 0 auto 0;
   }
 
 }

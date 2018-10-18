@@ -15,7 +15,7 @@
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
 </head>
 <body>
-  <div id="view" class="container">
+  <div id="view-edit" class="container">
     <div class="row flex-row-reverse">
       <div class="col-md-6 view-list">
         <div class="header">
@@ -44,15 +44,15 @@
     <div class="row ">
       <span class="poll-view-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
     </div>
-    <div class="row ">
-      <span class="poll-view-description">Dia mas votado: <b> 15 de Enero de 11:00 a 12:00</b></span>
-    </div>
     <div class="row align-items-center table-content">
       <div class="table-container">
         <table class="poll-table">
           <thead>
             <tr>
+              <th class="add-date">
+              </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">13</span>
                 <small class="month">Lun</small>
@@ -60,6 +60,7 @@
                 <small class="month">12:00</small>
               </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">14</span>
                 <small class="month">Mar</small>
@@ -67,6 +68,7 @@
                 <small class="month">12:00</small>
               </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">15</span>
                 <small class="month">Mie</small>
@@ -74,6 +76,7 @@
                 <small class="month">12:00</small>
               </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">16</span>
                 <small class="month">Jue</small>
@@ -81,6 +84,7 @@
                 <small class="month">12:00</small>
               </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">17</span>
                 <small class="month">Vie</small>
@@ -88,6 +92,7 @@
                 <small class="month">12:00</small>
               </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">18</span>
                 <small class="month">Sab</small>
@@ -95,6 +100,7 @@
                 <small class="month">12:00</small>
               </th>
               <th>
+                <a href="#"><span class="poll-remove"><i class="fas fa-times-circle"></i></span></a>
                 <small class="month">Enero</small>
                 <span class="day">19</span>
                 <small class="month">Dom</small>
@@ -105,6 +111,11 @@
           </thead>
           <tbody>
             <tr class="count">
+              <td class="add-date">
+                <span>
+                  <i class="fas fa-plus-square"></i>
+                </span>
+              </td>
               <td>
                 <span>2 <i class="fas fa-check"></i></span>
               </td>
@@ -120,6 +131,7 @@
               <td></td>
             </tr>
             <tr class="check">
+              <td class="add-date"></td>
               <td><span><i class="fas fa-check"></i></span></td>
               <td></td>
               <td><span><i class="fas fa-check"></i></span></td>
@@ -129,6 +141,7 @@
               <td></td>
             </tr>
             <tr class="people-list">
+              <td class="add-date last"></td>
               <td>
                 <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
                   <i class="fas fa-user"></i>
@@ -193,25 +206,9 @@
         <!-- Central Modal Small -->
     </div>
     <div class="row">
-      <a class="btn btn-lg mx-auto btn-custom-blue"  href="#">Editar</a>
-    </div>a
-
+      <a class="btn btn-lg mx-auto btn-custom-blue"  href="#">OK</a>
+    </div>
   </div>
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.poll-table .check td').on('click', function(){
-        var cell = $(this);
-        if(cell.children().length != 0){
-          cell.children().remove();
-        } else {
-          var check = $('<span>', {}).append(
-            $('<i>', { class: 'fas fa-check' })
-          );
-          cell.append(check);
-        }
-      });
-    });
-  </script>
 </body>
 </html>

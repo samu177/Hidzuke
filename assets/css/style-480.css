@@ -5,13 +5,29 @@
     margin-top: -250px;
     margin-right: -140px;
   }
-  .modal-footer{
+  .cardList .date-group .day{
+    font-size: 1.75em;
+  }
+
+  #main .modal-footer{
     flex-wrap: wrap;
     align-items: center;
   }
-  .modal-footer .btn{
+  #main .modal-footer .btn{
     width: 100%;
     margin: 10px 4px;
   }
 
+  .header-md{
+    height: 65px!important;
+  }
+
+  .poll-view-title{
+    font-size: 1.5rem;
+  }
+
+  .poll-view-description{
+    margin-top: 7px;
+    font-size: 1rem;
+  }
 }
