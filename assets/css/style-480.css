@@ -2,9 +2,18 @@
   .login {
     height: 500px;
     width: 280px;
-    margin-top: -250px;
-    margin-right: -140px;
   }
+
+  #login .h-100{
+    height: unset!important;
+    margin: 15px 0;
+  }
+
+  #signin .h-100{
+    height: unset!important;
+    margin: 15px 0;
+  }
+
   .cardList .date-group .day{
     font-size: 1.75em;
   }

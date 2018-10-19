@@ -5,6 +5,9 @@
   #add-small{
     display: block;
   }
+  .cardList{
+    max-height: calc(100% - 250px);
+  }
   #main .modal-dialog{
     margin: 0;
     width: 100%!important;
@@ -29,6 +32,15 @@
 
   .poll-view-description{
     margin: 0 auto 0;
+  }
+
+  .badge-list{
+    text-align: center;
+  }
+
+  .badge{
+    padding: 10px;
+    font-size: 0.9em;
   }
 
 }

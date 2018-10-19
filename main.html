@@ -53,7 +53,7 @@
           </div>
           </div>
         <div class="cardList square scrollbar-cyan bordered-cyan">
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card owner">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -72,7 +72,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card owner">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -91,7 +91,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card owner">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -110,7 +110,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -128,7 +128,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -146,7 +146,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -164,7 +164,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -182,7 +182,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -200,7 +200,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -218,7 +218,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -236,7 +236,7 @@
               </div>
             </div>
           </a>
-          <a class="nounderline card-link" href="#">
+          <a class="nounderline card-link waves-effect waves-light" href="#">
             <div class="card">
               <div class="row align-items-center">
                 <div class="col-2">
@@ -280,12 +280,38 @@
                 <input type="text" class="form-control" id="poll-description" placeholder="Enter description">
               </div>
               <div class="form-group">
-                <label for="poll-date-init">Fecha Inicio</label>
-                <input type="date" class="form-control" id="poll-date-init">
+                <label for="poll-date-list">Lista de Fechas</label>
+                <div class="badge-list">
+                  <span class="badge badge-dark">13/08/2018 11:00-12:00 &nbsp;&nbsp;
+                    <a href="#" class="remove-date">
+                      <i class="far fa-times-circle"></i>
+                    </a>
+                  </span>
+                  <span class="badge badge-dark">14/08/2018 11:00-12:00 &nbsp;&nbsp;
+                    <a href="#" class="remove-date">
+                      <i class="far fa-times-circle"></i>
+                    </a>
+                  </span>
+                  <span class="badge badge-dark">15/08/2018 11:00-12:00 &nbsp;&nbsp;
+                    <a href="#" class="remove-date">
+                      <i class="far fa-times-circle"></i>
+                    </a>
+                  </span>
+                  <span class="badge badge-dark">16/08/2018 11:00-12:00 &nbsp;&nbsp;
+                    <a href="#" class="remove-date">
+                      <i class="far fa-times-circle"></i>
+                    </a>
+                  </span>
+                  <span class="badge badge-dark">17/08/2018 11:00-12:00 &nbsp;&nbsp;
+                    <a href="#" class="remove-date">
+                      <i class="far fa-times-circle"></i>
+                    </a>
+                  </span>
+                </div>
               </div>
               <div class="form-group">
-                <label for="poll-date-end">Fecha Fin</label>
-                <input type="date" class="form-control" id="poll-date-end">
+                <label for="poll-date">Fecha</label>
+                <input type="date" class="form-control" id="poll-date">
               </div>
               <div class="form-group">
                 <label for="poll-hour-init">Hora Inicio</label>
@@ -294,6 +320,9 @@
               <div class="form-group">
                 <label for="poll-hour-end">Hora Fin</label>
                 <input type="time" class="form-control" id="poll-hour-end">
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-success">Añadir Fecha</button>
               </div>
             </div>
             <div class="modal-footer justify-content-center">
@@ -309,5 +338,13 @@
 
 
   <script type="text/javascript" src="assets/js/mdb.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.badge .remove-date').on('click', function () {
+        var close = $(this);
+        close.parent().remove();
+      });
+    });
+  </script>
 </body>
 </html>
