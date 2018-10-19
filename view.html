@@ -1,6 +1,6 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/mdb.min.css">
@@ -11,19 +11,27 @@
   <link rel="stylesheet" type="text/css" href="assets/css/flag-icon.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="body-background-img">
   <div id="view" class="container">
     <div class="row flex-row-reverse">
       <div class="col-md-6 view-list">
         <div class="header">
           <div class="row">
-            <div class="col-9">
+            <div class="col-7 col-sm-9 col-md-8 col-lg-9">
               <a href="#"><img src="assets/img/logo-black.png"></a>
             </div>
-            <div class="col-3">
+            <div class="col-3 col-sm-1 col-md-2 col-lg-1">
+              <button class="btn btn-custom-blue btn-flag dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><span class="flag-icon flag-icon-es"></span></button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> ESPAÑA</a>
+                <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb"></span> Ingles</a>
+              </div>
+            </div>
+            <div class="col-2 ">
               <a class="nounderline add-link" href="#">
                 <span class="log">
                   <i class="fas fa-sign-in-alt"></i>
@@ -48,7 +56,7 @@
       <span class="poll-view-description">Dia mas votado: <b> 15 de Enero de 11:00 a 12:00</b></span>
     </div>
     <div class="row align-items-center table-content">
-      <div class="table-container">
+      <div class="table-container square scrollbar-blue bordered-blue">
         <table class="poll-table">
           <thead>
             <tr>
@@ -193,8 +201,8 @@
         <!-- Central Modal Small -->
     </div>
     <div class="row">
-      <a class="btn btn-lg mx-auto btn-custom-blue"  href="#">Editar</a>
-    </div>a
+      <a class="btn btn-lg mx-auto btn-custom-blue" href="#">Editar</a>
+    </div>
 
   </div>
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>

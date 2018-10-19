@@ -18,11 +18,16 @@
     font-size: 1.75em;
   }
 
-  #main .modal-footer{
+  #main .modal-dialog{
+    /*height: fit-content!important;*/
+    display: table;
+  }
+
+  .modal-footer{
     flex-wrap: wrap;
     align-items: center;
   }
-  #main .modal-footer .btn{
+  .modal-footer .btn{
     width: 100%;
     margin: 10px 4px;
   }
@@ -32,6 +37,10 @@
   }
 
   .poll-view-title{
+    font-size: 1.5rem;
+  }
+
+  .poll-title-edit input{
     font-size: 1.5rem;
   }
 

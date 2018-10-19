@@ -1,6 +1,6 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/mdb.min.css">
@@ -11,19 +11,27 @@
   <link rel="stylesheet" type="text/css" href="assets/css/flag-icon.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="body-background-img">
   <div id="view-edit" class="container">
     <div class="row flex-row-reverse">
       <div class="col-md-6 view-list">
         <div class="header">
           <div class="row">
-            <div class="col-9">
+            <div class="col-7 col-sm-9 col-md-8 col-lg-9">
               <a href="#"><img src="assets/img/logo-black.png"></a>
             </div>
-            <div class="col-3">
+            <div class="col-3 col-sm-1 col-md-2 col-lg-1">
+              <button class="btn btn-custom-blue btn-flag dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><span class="flag-icon flag-icon-es"></span></button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> ESPAÑA</a>
+                <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb"></span> Ingles</a>
+              </div>
+            </div>
+            <div class="col-2 ">
               <a class="nounderline add-link" href="#">
                 <span class="log">
                   <i class="fas fa-sign-in-alt"></i>
@@ -36,16 +44,20 @@
       <div class="col-md-6 view-list">
         <div class="header header-md">
           <div class="row">
-            <h2 class="poll-view-title">Titulo de la encuesta</h2>
+            <div class="md-form poll-title-edit">
+              <input value="Titulo de la encuesta" type="text" class="form-control">
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row ">
-      <span class="poll-view-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+      <div class="md-form poll-description-edit">
+        <input value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." type="text" class="form-control">
+      </div>
     </div>
     <div class="row align-items-center table-content">
-      <div class="table-container">
+      <div class="table-container square scrollbar-blue bordered-blue">
         <table class="poll-table">
           <thead>
             <tr>
@@ -143,37 +155,37 @@
             <tr class="people-list">
               <td class="add-date last"></td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm">
+                <a class="btn btn-custom-blue"  href="#" >
                   <i class="fas fa-user"></i>
                 </a>
               </td>
@@ -182,10 +194,61 @@
         </table>
       </div>
     </div>
-    <div class="row">
-      <a class="btn btn-lg mx-auto btn-custom-blue" href="#">OK</a>
+    <div class="row text-center">
+      <div class="col-12">
+        <div class="form-group">
+          <a class="btn btn-lg mx-auto btn-custom-blue" href="#">OK</a>
+          <a class="btn btn-lg mx-auto btn-custom-orange" href="#">Cancelar</a>
+          <a class="btn btn-lg mx-auto btn-danger" href="#">Borrar</a>
+        </div>
+      </div>
     </div>
   </div>
+  <!-- Central Modal Small -->
+  <div class="modal fade" id="centralModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+      <!-- Change class .modal-sm to change the size of the modal -->
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="myModalLabel">Crear fecha</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="poll-date">Fecha</label>
+                  <input type="date" class="form-control" id="poll-date">
+                </div>
+                <div class="form-group">
+                  <label for="poll-hour-init">Hora Inicio</label>
+                  <input type="time" class="form-control" id="poll-hour-init">
+                </div>
+                <div class="form-group">
+                  <label for="poll-hour-end">Hora Fin</label>
+                  <input type="time" class="form-control" id="poll-hour-end">
+                </div>
+              </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-custom-orange" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-custom-blue">Añadir fecha</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Central Modal Small -->
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.add-date').on('click', function(){
+        $('#centralModal').modal();
+      });
+    });
+  </script>
 </body>
 </html>

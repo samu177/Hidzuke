@@ -11,35 +11,43 @@
   <link rel="stylesheet" type="text/css" href="assets/css/flag-icon.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div id="login" class="container">
     <div class="row align-items-center h-100">
       <div class="login">
-        <div class="row language ">
-          <span class="flag-icon flag-icon-gb"></span>
-        </div>
         <div class="row logo ">
-          <img src="assets/img/logo.png">
+          <div class="col-8 col-sm-9">
+            <img src="assets/img/logo.png">
+          </div>
+          <div class="col-3">
+            <button class="btn btn-custom-blue btn-flag dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false"><span class="flag-icon flag-icon-es"></span></button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> ESPAÑA</a>
+              <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb"></span> Ingles</a>
+            </div>
+          </div>
         </div>
         <form class="login-form">
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">        </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label for="exampleInputEmail1">Correo electrónico</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico">
           </div>
-          <button type="submit" class="btn btn-custom-blue btn-login">Submit</button>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+          </div>
+          <button type="submit" class="btn btn-custom-blue btn-login">Ingresar</button>
         </form>
         <div class="row text-center">
-          <a class="links" href="signin.html">Sign In</a>
+          <a class="links" href="signin.html">Registrarse</a>
         </div>
       </div>
     </div>
-    
+
   </div>
   <script type="text/javascript" src="assets/js/mdb.js"></script>
 </body>
