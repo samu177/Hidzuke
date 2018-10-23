@@ -64,4 +64,24 @@ class UserMapper {
 			return true;
 		}
 	}
+
+	/**
+	* Loads a User from the database given its id
+	*
+	*
+	* @throws PDOException if a database error occurs
+	* @return Integer The User id. -1
+	* if the User is not found
+	*/
+	public function findByMail($mail){
+		$stmt = $this->db->prepare("SELECT * FROM users WHERE mail=?");
+		$stmt->execute(array($mail));
+		$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($user != null) {
+			return $user["id"];
+		} else {
+			return -1;
+		}
+	}
 }

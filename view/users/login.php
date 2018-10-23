@@ -34,7 +34,7 @@ $errors = $view->getVariable("errors");
 				<button type="submit" class="btn btn-custom-blue btn-login">Ingresar</button>
 			</form>
 			<div class="row text-center">
-				<a class="links" href="signin.html">Registrarse</a>
+				<a class="links" href="index.php?controller=users&action=register">Registrarse</a>
 			</div>
 		</div>
 	</div>

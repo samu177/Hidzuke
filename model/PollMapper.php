@@ -94,24 +94,35 @@ class PollMapper {
 	* if the Post is not found
 	*/
 	public function findByUser($userid){
-		$stmt = $this->db->prepare("SELECT p.id, p.title, p.description, p.link, p.id_user FROM polls p JOIN users_polls up ON up.id_user=? and p.id=up.id_poll");
+		$stmt = $this->db->prepare("SELECT p.id, p.title, p.description, p.link, p.id_user, p.date FROM polls p JOIN users_polls up ON up.id_user=? and p.id=up.id_poll");
 		$stmt->execute(array($userid));
-		$polls_db = $stmt->fetch(PDO::FETCH_ASSOC);
+		$polls_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		if($polls_db != null) {
       $polls = array();
-
+			$polls_owner = array();
       foreach ($polls_db as $poll) {
-  			array_push($polls, new Poll(
-  			$post["id"],
-  			$post["title"],
-  			$post["description"],
-        $post["link"],
-        $post["id_user"]));
+				if($userid == $poll["id_user"]){
+					array_push($polls_owner, new Poll(
+	  			$poll["id"],
+	  			$poll["title"],
+	  			$poll["description"],
+	        $poll["link"],
+	        $poll["id_user"],
+					$poll["date"]));
+				}else{
+					array_push($polls, new Poll(
+	  			$poll["id"],
+	  			$poll["title"],
+	  			$poll["description"],
+	        $poll["link"],
+	        $poll["id_user"],
+					$poll["date"]));
+				}
   		}
-			return $polls;
+			return array_merge($polls_owner , $polls);
 		} else {
-			return NULL;
+			return [];
 		}
 	}
 }

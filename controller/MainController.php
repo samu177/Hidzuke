@@ -6,6 +6,9 @@ require_once(__DIR__."/../core/I18n.php");
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/UserMapper.php");
 
+require_once(__DIR__."/../model/Poll.php");
+require_once(__DIR__."/../model/PollMapper.php");
+
 require_once(__DIR__."/../controller/BaseController.php");
 
 /**
@@ -24,11 +27,16 @@ class MainController extends BaseController {
 	* @var UserMapper
 	*/
 	private $userMapper;
+	private $pollMapper;
 
 	public function __construct() {
 		parent::__construct();
 
-		$this->userMapper = new UserMapper();
+		$this->pollMapper = new PollMapper();
+
+		if(!isset($_SESSION['currentuser'])){
+			$this->view->redirect("users", "login");
+		}
 	}
 
   /**
@@ -45,13 +53,19 @@ class MainController extends BaseController {
 	public function index() {
 
 		// obtain the data from the database
-		//$posts = $this->postMapper->findAll();
+		$polls = $this->pollMapper->findByUser($_SESSION["currentuser"]);
 
 		// put the array containing Post object to the view
-		//$this->view->setVariable("posts", $posts);
+		$this->view->setVariable("polls", $polls);
 
 		// render the view (/view/posts/index.php)
 		$this->view->render("main", "index");
+	}
+
+	public function add() {
+		if (isset($_POST["title"])){ // reaching via HTTP Post...
+			print_r($_POST["dates"]);
+		}
 	}
 
 

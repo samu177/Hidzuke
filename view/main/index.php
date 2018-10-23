@@ -3,6 +3,8 @@
 
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
+$polls = $view->getVariable("polls");
+
 $errors = $view->getVariable("errors");
 ?>
 
@@ -32,7 +34,7 @@ $errors = $view->getVariable("errors");
             </div>
           </div>
           <div class="col-2 ">
-            <a class="nounderline add-link" href="#">
+            <a class="nounderline add-link" href="index.php?controller=users&action=logout">
               <span class="log">
                 <i class="fas fa-sign-in-alt"></i>
               </span>
@@ -52,225 +54,34 @@ $errors = $view->getVariable("errors");
         </div>
         </div>
       <div class="cardList square scrollbar-orange bordered-orange">
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card owner">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card owner">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card owner">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
+        <?php
+        foreach ($polls as $poll) {?>
+          <a class="nounderline card-link waves-effect waves-light" href="index.php?controller=poll&action=view&id=<?= $poll->getId()?>">
+            <?php if($_SESSION["currentuser"] == $poll->getId_user()){
+                echo '<div class="card owner">';
+              }else{
+                echo '<div class="card">';
+              }
+              ?>
+              <div class="row align-items-center">
+                <div class="col-2">
+                  <span class="color-white card-calendar-icon">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <div class="col-8">
+                  <span><?= $poll->getTitle() ?> </span>
+                </div>
+                <div class="col-2 date-group">
+                  <?php if($poll->getDate() != NULL){?>
+                  <small class="month"><?= $poll->getDate()->format('F')?></small>
+                  <span class="day"><?= $poll->getDate()->format('d')?></span>
+                  <?php } ?>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a class="nounderline card-link waves-effect waves-light" href="#">
-          <div class="card">
-            <div class="row align-items-center">
-              <div class="col-2">
-                <span class="color-white card-calendar-icon">
-                  <i class="far fa-calendar-alt"></i>
-                </span>
-              </div>
-              <div class="col-8">
-                <span>Lorem Impum dolor set </span>
-              </div>
-              <div class="col-2 date-group">
-                <small class="month">Enero</small>
-                <span class="day">13</span>
-              </div>
-            </div>
-          </div>
-        </a>
+          </a>
+        <?php } ?>
       </div>
     </div>
   </div>
@@ -286,65 +97,43 @@ $errors = $view->getVariable("errors");
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form id="addDate">
+        </form>
+        <form action="index.php?controller=main&amp;action=add" method="POST">
           <div class="modal-body">
             <div class="form-group">
               <label for="poll-title">Titulo</label>
-              <input type="text" class="form-control" id="poll-title" name="title" placeholder="Introducir título">
+              <input type="text" class="form-control" id="poll-title" minlength="5" maxlength="50" name="title" placeholder="Introducir título" required>
             </div>
             <div class="form-group">
               <label for="poll-description">Descripción</label>
-              <input type="text" class="form-control" id="poll-description" name="description" placeholder="Introducir descripción">
+              <input type="text" class="form-control" id="poll-description" minlength="5" maxlength="100" name="description" placeholder="Introducir descripción" required>
             </div>
             <div class="form-group">
               <label for="poll-date-list">Lista de Fechas</label>
               <div class="badge-list">
-                <span class="badge badge-dark">13/08/2018 11:00-12:00 &nbsp;&nbsp;
-                  <a href="#" class="remove-date">
-                    <i class="far fa-times-circle"></i>
-                  </a>
-                </span>
-                <span class="badge badge-dark">14/08/2018 11:00-12:00 &nbsp;&nbsp;
-                  <a href="#" class="remove-date">
-                    <i class="far fa-times-circle"></i>
-                  </a>
-                </span>
-                <span class="badge badge-dark">15/08/2018 11:00-12:00 &nbsp;&nbsp;
-                  <a href="#" class="remove-date">
-                    <i class="far fa-times-circle"></i>
-                  </a>
-                </span>
-                <span class="badge badge-dark">16/08/2018 11:00-12:00 &nbsp;&nbsp;
-                  <a href="#" class="remove-date">
-                    <i class="far fa-times-circle"></i>
-                  </a>
-                </span>
-                <span class="badge badge-dark">17/08/2018 11:00-12:00 &nbsp;&nbsp;
-                  <a href="#" class="remove-date">
-                    <i class="far fa-times-circle"></i>
-                  </a>
-                </span>
+                <input id="dates" type="text" name="dates" value="" class="d-none">
               </div>
             </div>
             <div class="form-group">
               <label for="poll-date">Fecha</label>
-              <input type="date" class="form-control" name="date" id="poll-date">
+              <input type="date" class="form-control" name="date" id="poll-date" form="addDate" required>
             </div>
             <div class="form-group">
               <label for="poll-hour-init">Hora Inicio</label>
-              <input type="time" class="form-control" name="hini" id="poll-hour-init">
+              <input type="time" class="form-control" name="hini" id="poll-hour-init" form="addDate" required>
             </div>
             <div class="form-group">
               <label for="poll-hour-end">Hora Fin</label>
-              <input type="time" class="form-control" name="hfin" id="poll-hour-end">
+              <input type="time" class="form-control" name="hfin" id="poll-hour-end" form="addDate" required>
             </div>
             <div class="form-group">
-              <button type="button" class="btn btn-success">Añadir Fecha</button>
-            </div>
+              <button type="submit" class="btn btn-success" form="addDate">Añadir Fecha</button>
+              </div>
           </div>
           <div class="modal-footer justify-content-center">
             <button type="button" class="btn btn-custom-orange" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-custom-blue">Crear Evento</button>
+            <button type="submit" class="btn btn-custom-blue">Crear Evento</button>
           </div>
         </form>
       </div>
@@ -356,10 +145,59 @@ $errors = $view->getVariable("errors");
 
 <script type="text/javascript" src="assets/js/mdb.js"></script>
 <script type="text/javascript">
+  function removeDate(elem){
+    var close = $(elem);
+    removeDateList(close.parent().text().trim());
+    close.parent().remove();
+
+  }
+  function removeDateList(day){
+    var $dates_val = $('#dates').val().split('.');
+    var $dates_val_new = '';
+    for ( var i = 0, l = $dates_val.length; i < l-1; i++ ) {
+      var v_date = $dates_val[i].split('/');
+      var v_date_time = v_date[0] + ' ' + v_date[1] + '-' + v_date[2];
+      if(v_date_time != day){
+        $dates_val_new += v_date[0] + '/' + v_date[1] + '/' + v_date[2] + '.';
+      }
+    }
+    $('#dates').val($dates_val_new);
+  }
+
+  function checkDay(date, hini, hend){
+    var $dates_val = $('#dates').val().split('.');
+    var check = false;
+
+    for ( var i = 0, l = $dates_val.length; i < l; i++ ) {
+      var v_date = $dates_val[i].split('/');
+      if(v_date[0] === date && v_date[1] === hini && v_date[2] === hend ){
+        check = true;
+        break;
+      }
+
+    }
+    return check;
+  }
+
   $(document).ready(function () {
-    $('.badge .remove-date').on('click', function () {
-      var close = $(this);
-      close.parent().remove();
+    $('#addDate').on('submit', function(event){
+
+      var date = $("#poll-date").val();
+      var hini = $("#poll-hour-init").val();
+      var hend = $("#poll-hour-end").val();
+
+      if(!checkDay(date, hini, hend)){
+        var datetime = $('<span>', {class: 'badge badge-dark'}).append([
+          date + ' ' + hini + '-' + hend + '&nbsp;&nbsp;',
+          $('<a>', {href: '#', class: 'remove-date', onclick: 'removeDate(this)'}).append(
+            $('<i>', {class: 'far fa-times-circle'})
+          )
+        ]);
+        $('.badge-list').append(datetime);
+        var $dates = $('#dates');
+        $dates.val($dates.val() + date + '/' + hini + '/' + hend + '.');
+      }
+      event.preventDefault();
     });
   });
 </script>

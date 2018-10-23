@@ -59,13 +59,16 @@ class UsersController extends BaseController {
 	* @return void
 	*/
 	public function login() {
+		if(isset($_SESSION['currentuser'])){
+			$this->view->redirect("main", "index");
+		}
 		if (isset($_POST["mail"])){ // reaching via HTTP Post...
 			//process login form
 			if ($this->userMapper->isValidUser($_POST["mail"], $_POST["pwd"])) {
 
-				$_SESSION["currentuser"]=$_POST["mail"];
+				$userid = $this->userMapper->findByMail($_POST["mail"]);
+				$_SESSION["currentuser"]=$userid;
 
-				// send user to the restricted area (HTTP 302 code)
 				$this->view->redirect("main", "index");
 
 			}else{
@@ -108,20 +111,21 @@ class UsersController extends BaseController {
 	*/
 	public function register() {
 
+		if(isset($_SESSION['currentuser'])){
+			$this->view->redirect("main", "index");
+		}
+
 		$user = new User();
-
-		if (isset($_POST["username"])){ // reaching via HTTP Post...
-
+		if (isset($_POST["name"])){ // reaching via HTTP Post...
 			// populate the User object with data form the form
-			$user->setUsername($_POST["username"]);
-			$user->setPassword($_POST["passwd"]);
-
+			$user->setUsername($_POST["name"]);
+			$user->setMail($_POST["mail"]);
+			$user->setPassword($_POST["pwd"]);
 			try{
 				$user->checkIsValidForRegister(); // if it fails, ValidationException
 
 				// check if user exists in the database
-				if (!$this->userMapper->usernameExists($_POST["username"])){
-
+				if (!$this->userMapper->usermailExists($_POST["mail"])){
 					// save the User object into the database
 					$this->userMapper->save($user);
 
@@ -130,7 +134,7 @@ class UsersController extends BaseController {
 					// We want to see a message after redirection, so we establish
 					// a "flash" message (which is simply a Session variable) to be
 					// get in the view after redirection.
-					$this->view->setFlash("Username ".$user->getUsername()." successfully added. Please login now");
+					//$this->view->setFlash("Username ".$user->getUsername()." successfully added. Please login now");
 
 					// perform the redirection. More or less:
 					// header("Location: index.php?controller=users&action=login")
@@ -138,7 +142,7 @@ class UsersController extends BaseController {
 					$this->view->redirect("users", "login");
 				} else {
 					$errors = array();
-					$errors["username"] = "Username already exists";
+					$errors["mail"] = "Mail already exists";
 					$this->view->setVariable("errors", $errors);
 				}
 			}catch(ValidationException $ex) {

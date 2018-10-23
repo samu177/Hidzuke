@@ -42,41 +42,48 @@ class Poll {
   */
   private $id_user;
 
+  /**
+  * The most voted day of the poll
+  * @var int
+  */
+  private $date;
+
 	/**
 	* The constructor
 	*
 	* @param string $title The title of the poll
 	* @param string $description The description of the poll
 	*/
-	public function __construct($id=NULL, $title=NULL, $description=NULL, $link=NULL, $id_user=NULL) {
+	public function __construct($id=NULL, $title=NULL, $description=NULL, $link=NULL, $id_user=NULL, $date=NULL) {
     $this->id = $id;
     $this->title = $title;
 		$this->description = $description;
     $this->link = $link;
     $this->id_user = $id_user;
+    $this->date = ($date != NULL ? new DateTime($date) : NULL);
 	}
   /**
-	* Gets the id of this user
+	* Gets the id of this poll
 	*
-	* @return int The id of this user
+	* @return int The id of this poll
 	*/
 	public function getId() {
 		return $this->id;
 	}
 
 	/**
-	* Gets the title of this user
+	* Gets the title of this poll
 	*
-	* @return string The title of this user
+	* @return string The title of this poll
 	*/
 	public function getTitle() {
 		return $this->title;
 	}
 
 	/**
-	* Sets the title of this user
+	* Sets the title of this poll
 	*
-	* @param string $title The title of this user
+	* @param string $title The title of this poll
 	* @return void
 	*/
 	public function setTitle($title) {
@@ -84,17 +91,17 @@ class Poll {
 	}
 
 	/**
-	* Gets the description of this user
+	* Gets the description of this poll
 	*
-	* @return string The description of this user
+	* @return string The description of this poll
 	*/
 	public function getDescription() {
 		return $this->description;
 	}
 	/**
-	* Sets the description of this user
+	* Sets the description of this poll
 	*
-	* @param string $description The description of this user
+	* @param string $description The description of this poll
 	* @return void
 	*/
 	public function setDescription($description) {
@@ -102,17 +109,17 @@ class Poll {
 	}
 
   /**
-	* Gets the link of this user
+	* Gets the link of this poll
 	*
-	* @return string The link of this user
+	* @return string The link of this poll
 	*/
 	public function getLink() {
 		return $this->link;
 	}
 	/**
-	* Sets the link of this user
+	* Sets the link of this poll
 	*
-	* @param string $link The link of this user
+	* @param string $link The link of this poll
 	* @return void
 	*/
 	public function setLink($link) {
@@ -128,6 +135,23 @@ class Poll {
     return $this->id_user;
   }
 
+  /**
+  * Gets the most voted day of this poll
+  *
+  * @return date The most voted day of this poll
+  */
+  public function getDate() {
+    return $this->date;
+  }
+  /**
+  * Sets the most voted day of this poll
+  *
+  * @param date $link The most voted day of this poll
+  * @return void
+  */
+  public function setDate($date) {
+    $this->date = ($date != NULL ? new DateTime($date) : NULL);
+  }
 
 	/**
 	* Checks if the current user instance is valid
