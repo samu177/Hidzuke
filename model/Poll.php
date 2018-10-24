@@ -44,9 +44,15 @@ class Poll {
 
   /**
   * The most voted day of the poll
-  * @var int
+  * @var date
   */
   private $date;
+
+  /**
+  * The most voted hour of the poll
+  * @var string
+  */
+  private $hours;
 
 	/**
 	* The constructor
@@ -54,13 +60,14 @@ class Poll {
 	* @param string $title The title of the poll
 	* @param string $description The description of the poll
 	*/
-	public function __construct($id=NULL, $title=NULL, $description=NULL, $link=NULL, $id_user=NULL, $date=NULL) {
+	public function __construct($id=NULL, $title=NULL, $description=NULL, $link=NULL, $id_user=NULL, $date=NULL, $hours=NULL) {
     $this->id = $id;
     $this->title = $title;
 		$this->description = $description;
     $this->link = $link;
     $this->id_user = $id_user;
     $this->date = ($date != NULL ? new DateTime($date) : NULL);
+    $this->hours = $hours;
 	}
   /**
 	* Gets the id of this poll
@@ -153,6 +160,24 @@ class Poll {
     $this->date = ($date != NULL ? new DateTime($date) : NULL);
   }
 
+  /**
+  * Gets the hours of this poll
+  *
+  * @return string The hours of this poll
+  */
+  public function getHours() {
+    return $this->hours;
+  }
+  /**
+  * Sets the hours of this poll
+  *
+  * @param string $link The hours of this poll
+  * @return void
+  */
+  public function setHours($hours) {
+    $this->hours = $hours;
+  }
+
 	/**
 	* Checks if the current user instance is valid
 	* for being registered in the database
@@ -164,14 +189,11 @@ class Poll {
 	*/
 	public function checkIsValidForRegister() {
 		$errors = array();
-		if (strlen($this->username) < 5) {
+		if (strlen($this->title) < 5) {
 			$errors["title"] = "Title must be at least 5 characters length";
 		}
-		if (strlen($this->passwd) < 5) {
+		if (strlen($this->description) < 5) {
 			$errors["description"] = "Description must be at least 5 characters length";
-		}
-    if (strlen($this->link) < 5) {
-			$errors["link"] = "Link must be at least 5 characters length";
 		}
 		if (sizeof($errors)>0){
 			throw new ValidationException($errors, "poll is not valid");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2018 a las 21:03:58
+-- Tiempo de generación: 24-10-2018 a las 22:04:28
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -35,8 +35,17 @@ CREATE TABLE `dates` (
   `date` date NOT NULL,
   `hini` time NOT NULL,
   `hend` time NOT NULL,
+  `votes` int(11) NOT NULL DEFAULT '0',
   `id_poll` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `dates`
+--
+
+INSERT INTO `dates` (`id`, `date`, `hini`, `hend`, `votes`, `id_poll`) VALUES
+(6, '2018-01-31', '00:00:00', '00:00:00', 0, 26),
+(8, '2018-10-10', '07:00:00', '16:00:00', 5, 26);
 
 -- --------------------------------------------------------
 
@@ -50,16 +59,22 @@ CREATE TABLE `polls` (
   `description` varchar(100) NOT NULL,
   `link` varchar(50) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `date` date DEFAULT NULL
+  `date` date DEFAULT NULL,
+  `hours` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `polls`
 --
 
-INSERT INTO `polls` (`id`, `title`, `description`, `link`, `id_user`, `date`) VALUES
-(1, 'title1', 'desc1', 'link1', 1, '2018-10-27'),
-(2, 'title2', 'desc2', 'link2', 3, NULL);
+INSERT INTO `polls` (`id`, `title`, `description`, `link`, `id_user`, `date`, `hours`) VALUES
+(1, 'title1', 'desc1', 'link1', 1, '2018-10-27', '11:00 12:00'),
+(2, 'title2', 'desc2', 'link2', 3, NULL, NULL),
+(26, 'Prueba 1', 'Descripcion 1', '707FPDO4qQ', 3, NULL, NULL),
+(27, 'asdqweqwer', 'asdasfgdhjgfhkhk', 'c9Enh3Emi1', 3, NULL, NULL),
+(28, 'asdqweqwer', 'asdasfgdhjgfhkhk', 'vfvkyCdBCe', 3, NULL, NULL),
+(29, 'asdqweqwer', 'asdasfgdhjgfhkhk', '9lO4pBxdOh', 3, NULL, NULL),
+(30, 'asdqweqwer', 'asdasfgdhjgfhkhk', 'BCC4nSlOjR', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,7 +127,12 @@ CREATE TABLE `users_polls` (
 INSERT INTO `users_polls` (`id_user`, `id_poll`) VALUES
 (1, 1),
 (3, 1),
-(3, 2);
+(3, 2),
+(3, 26),
+(3, 27),
+(3, 28),
+(3, 29),
+(3, 30);
 
 --
 -- Índices para tablas volcadas
@@ -130,6 +150,7 @@ ALTER TABLE `dates`
 --
 ALTER TABLE `polls`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `link` (`link`),
   ADD KEY `id_user` (`id_user`);
 
 --
@@ -161,13 +182,13 @@ ALTER TABLE `users_polls`
 -- AUTO_INCREMENT de la tabla `dates`
 --
 ALTER TABLE `dates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `polls`
 --
 ALTER TABLE `polls`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

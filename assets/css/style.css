@@ -372,6 +372,11 @@ a.remove-date:hover{
   color: white;
 }
 
+.poll-link{
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+
 .poll-description-edit{
   margin: 50px auto 0;
   width: 70%;
@@ -550,7 +555,7 @@ fieldset[disabled] .btn-custom-blue.active {
 
 .btn-custom-orange {
   color: #ffffff;
-  background-color: #F9B24C;
+  background-color: #E89823;
   border-color: #B6720E;
 }
 
@@ -560,7 +565,7 @@ fieldset[disabled] .btn-custom-blue.active {
 .btn-custom-orange.active,
 .open .dropdown-toggle.btn-custom-orange {
   color: #ffffff;
-  background-color: #E89823;
+  background-color: #B6720E;
   border-color: #B6720E;
 }
 

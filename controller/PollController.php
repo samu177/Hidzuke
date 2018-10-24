@@ -9,24 +9,25 @@ require_once(__DIR__."/../model/UserMapper.php");
 require_once(__DIR__."/../model/Poll.php");
 require_once(__DIR__."/../model/PollMapper.php");
 
+require_once(__DIR__."/../model/Date.php");
 require_once(__DIR__."/../model/DateMapper.php");
 
 require_once(__DIR__."/../controller/BaseController.php");
 
 /**
-* Class MainController
+* Class PollController
 *
-* Controller to main, add poll
+* Controller to poll
 *
 * @author lipido <lipido@gmail.com>
 */
-class MainController extends BaseController {
+class PollController extends BaseController {
 
 	/**
-	* Reference to the UserMapper to interact
+	* Reference to the pollMapper to interact
 	* with the database
 	*
-	* @var UserMapper
+	* @var pollMapper
 	*/
 	private $pollMapper;
 	private $dateMapper;
@@ -55,14 +56,22 @@ class MainController extends BaseController {
 	*/
 	public function index() {
 
+    if (!isset($_GET["id"])) {
+			throw new Exception("id is mandatory");
+		}
+
+		$postid = $_GET["id"];
+
 		// obtain the data from the database
-		$polls = $this->pollMapper->findByUser($_SESSION["currentuser"]);
+		$poll = $this->pollMapper->findById($postid);
+    $dates = $this->dateMapper->findByPoll($postid);
 
 		// put the array containing Post object to the view
-		$this->view->setVariable("polls", $polls);
+		$this->view->setVariable("poll", $poll);
+    $this->view->setVariable("dates", $dates);
 
 		// render the view (/view/posts/index.php)
-		$this->view->render("main", "index");
+		$this->view->render("polls", "index");
 	}
 
 	private function generateRandomString($length) {
@@ -108,7 +117,7 @@ class MainController extends BaseController {
 					// perform the redirection. More or less:
 					// header("Location: index.php?controller=users&action=login")
 					// die();
-					$this->view->redirect("poll", "index", "id=".$idpoll);
+					$this->view->redirect("main", "index");
 				}
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...

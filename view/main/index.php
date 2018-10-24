@@ -56,7 +56,7 @@ $errors = $view->getVariable("errors");
       <div class="cardList square scrollbar-orange bordered-orange">
         <?php
         foreach ($polls as $poll) {?>
-          <a class="nounderline card-link waves-effect waves-light" href="index.php?controller=poll&action=view&id=<?= $poll->getId()?>">
+          <a class="nounderline card-link waves-effect waves-light" href="index.php?controller=poll&action=index&id=<?= $poll->getId()?>">
             <?php if($_SESSION["currentuser"] == $poll->getId_user()){
                 echo '<div class="card owner">';
               }else{

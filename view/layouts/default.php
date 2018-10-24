@@ -22,7 +22,9 @@ $currentuser = $view->getVariable("currentusername");
   <script type="text/javascript" src="assets/js/popper.min.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body <?php if(strpos($_SERVER['REQUEST_URI'], 'controller=poll&action=index') || strpos($_SERVER['REQUEST_URI'], 'controller=poll&action=edit')){
+    echo "class='body-background-img'";
+  } ?>>
 	<?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
 </body>
 </html>

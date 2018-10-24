@@ -29,9 +29,23 @@ class PollMapper {
 	* @throws PDOException if a database error occurs
 	* @return void
 	*/
-	public function save($poll) {
+	public function save($poll,$userId) {
 		$stmt = $this->db->prepare("INSERT INTO polls (title, description, link, id_user) values (?,?,?,?)");
-		$stmt->execute(array($user->getTitle(), $user->getDescription(), $user->getLink(), $user->getId_user()));
+		$result = $stmt->execute(array($poll->getTitle(), $poll->getDescription(), $poll->getLink(), $userId));
+		if($result){
+			$stmt = $this->db->prepare("SELECT id FROM polls WHERE link = ?");
+			$stmt->execute(array($poll->getLink()));
+			$pollId = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if($pollId != null) {
+				$stmt = $this->db->prepare("INSERT INTO users_polls (id_user, id_poll) values (?,?)");
+				$result = $stmt->execute(array($userId,$pollId['id']));
+				return $pollId['id'];
+			} else {
+				return -1;
+			}
+		}
+		return -1;
 	}
 
   /**
@@ -54,7 +68,7 @@ class PollMapper {
 	* @return void
 	*/
   public function update(Poll $poll){
-    $stmt = $this->db->prepare("UPDATE poll set title=?, descrition=? where id=?");
+    $stmt = $this->db->prepare("UPDATE poll set title=?, description=? where id=?");
     $stmt->execute(array($poll->getTitle(), $poll->getDescription(), $poll->getId()));
   }
 
@@ -78,9 +92,27 @@ class PollMapper {
 			$poll["title"],
 			$poll["description"],
       $poll["link"],
-      $poll["id_user"]);
+      $poll["id_user"],
+			$poll["date"],
+			$poll["hours"]);
 		} else {
 			return NULL;
+		}
+	}
+
+
+	/**
+	* Checks if a given link is already in the database
+	*
+	* @param string $link the link to check
+	* @return boolean true if the link exists, false otherwise
+	*/
+	public function pollLinkExists($link) {
+		$stmt = $this->db->prepare("SELECT count(title) FROM polls where link=?");
+		$stmt->execute(array($link));
+
+		if ($stmt->fetchColumn() > 0) {
+			return true;
 		}
 	}
 
