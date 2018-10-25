@@ -157,4 +157,18 @@ class PollMapper {
 			return [];
 		}
 	}
+
+	public function getPollUser($pollId){
+		$stmt = $this->db->prepare("SELECT u.id FROM users u JOIN users_polls up ON up.id_poll=? and u.id=up.id_user");
+		$stmt->execute(array($pollId));
+		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$users = array();
+
+		foreach ($users_db as $user) {
+			array_push($users, $user["id"]);
+		}
+
+		return $users;
+	}
 }

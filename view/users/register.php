@@ -30,7 +30,7 @@ $view->setVariable("title", "Register");
 				</div>
 				<div class="form-group">
 					<label for="exampleInputName">Nombre</label>
-					<input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Insertar nombre" required>
+					<input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Insertar nombre" pattern="[A-Za-z]" title="Solo letras por favor" required>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Correo electrónico</label>

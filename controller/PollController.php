@@ -65,10 +65,24 @@ class PollController extends BaseController {
 		// obtain the data from the database
 		$poll = $this->pollMapper->findById($postid);
     $dates = $this->dateMapper->findByPoll($postid);
+		$usersDates = $this->dateMapper->findUsersDates($postid);
+		$usersList = $this->pollMapper->getPollUser($poll->getId());
+		$correct_user = false;
+
+		foreach ($usersList as $value) {
+			if($_SESSION['currentuser'] == $value){
+				$correct_user = true;
+			}
+		}
+		if(!$correct_user){
+			$this->view->redirect("main", "index");
+		}
 
 		// put the array containing Post object to the view
 		$this->view->setVariable("poll", $poll);
     $this->view->setVariable("dates", $dates);
+    $this->view->setVariable("user", $_SESSION['currentuser']);
+		$this->view->setVariable("usersDates", $usersDates);
 
 		// render the view (/view/posts/index.php)
 		$this->view->render("polls", "index");
@@ -126,5 +140,16 @@ class PollController extends BaseController {
 				$this->view->setVariable("errors", $errors);
 			}
 		}
+	}
+
+	public function confirmChanges() {
+		print_r($_SESSION['currentuser']);
+		if (isset($_POST["poll"])){
+			print_r($_POST["dateList"]);
+			 $this->dateMapper->updateVotes($_POST["dateList"],$_SESSION['currentuser']);
+		}else{
+			$this->view->setVariable("errors", "Undefined Error");
+		}
+		$this->view->redirect("main", "index");
 	}
 }
