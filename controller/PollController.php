@@ -38,6 +38,10 @@ class PollController extends BaseController {
 		$this->pollMapper = new PollMapper();
 		$this->dateMapper = new DateMapper();
 
+		if (isset($_GET["link"])){
+			$this->link($_GET["link"]);
+		}
+
 		if(!isset($_SESSION['currentuser'])){
 			$this->view->redirect("users", "login");
 		}
@@ -55,17 +59,22 @@ class PollController extends BaseController {
 	* </ul>
 	*/
 	public function index() {
+		if(isset($_SESSION['link'])){
+			$pollid = $this->pollMapper->checkUserLink($_SESSION['link']);
+			unset($_SESSION['link']);
+			$this->view->redirect("poll", "index", "id=".$pollid);
+		}
 
     if (!isset($_GET["id"])) {
 			throw new Exception("id is mandatory");
 		}
 
-		$postid = $_GET["id"];
+		$pollid = $_GET["id"];
 
 		// obtain the data from the database
-		$poll = $this->pollMapper->findById($postid);
-    $dates = $this->dateMapper->findByPoll($postid);
-		$usersDates = $this->dateMapper->findUsersDates($postid);
+		$poll = $this->pollMapper->findById($pollid);
+    $dates = $this->dateMapper->findByPoll($pollid);
+		$usersDates = $this->dateMapper->findUsersDates($pollid);
 		$usersList = $this->pollMapper->getPollUser($poll->getId());
 		$correct_user = false;
 
@@ -98,6 +107,13 @@ class PollController extends BaseController {
 		return $randomString;
 	}
 
+	public function delete(){
+		if(isset($_POST["id"])){
+			$this->pollMapper->delete($_POST["id"]);
+		}
+		$this->view->redirect("main", "index");
+	}
+
 	public function add() {
 		$poll = new Poll();
 		if (isset($_POST["title"])){ // reaching via HTTP Post...
@@ -105,7 +121,7 @@ class PollController extends BaseController {
 			$poll->setTitle($_POST["title"]);
 			$poll->setDescription($_POST["description"]);
 
-			$length = 10;
+			$length = 25;
 			$link = $this->generateRandomString($length);
 			while($this->pollMapper->pollLinkExists($link)){
 				$link = generateRandomString(++$length);
@@ -142,14 +158,79 @@ class PollController extends BaseController {
 		}
 	}
 
+	public function edit() {
+
+		if (isset($_POST["title"])){ // reaching via HTTP Post...
+			// populate the Poll object with data form the form
+			$poll = new Poll($_POST["id"], $_POST["title"],$_POST["description"]);
+
+			try{
+				$poll->checkIsValidForRegister(); // if it fails, ValidationException
+
+				$this->pollMapper->update($poll);
+
+				if($_POST["delete"] != ''){
+					$this->dateMapper->removeDates($_POST["delete"]);
+				}
+				if($_POST["badge-dates"] != ''){
+					$this->dateMapper->addDates($_POST["badge-dates"], $_POST["id"]);
+				}
+				$this->dateMapper->updateMostVoteDay($_POST["id"]);
+
+				$this->view->redirect("poll", "index", "id=".$_POST["id"]);
+
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+		if (!isset($_GET["id"])) {
+			throw new Exception("id is mandatory");
+		}
+
+		$pollid = $_GET["id"];
+		// obtain the data from the database
+		$poll = $this->pollMapper->findById($pollid);
+    $dates = $this->dateMapper->findByPoll($pollid);
+		$usersDates = $this->dateMapper->findUsersDates($pollid);
+
+		if($poll->getId_user() != $_SESSION['currentuser']){
+			$this->view->redirect("main", "index");
+		}
+
+		// put the array containing Post object to the view
+		$this->view->setVariable("poll", $poll);
+    $this->view->setVariable("dates", $dates);
+    $this->view->setVariable("user", $_SESSION['currentuser']);
+		$this->view->setVariable("usersDates", $usersDates);
+
+		// render the view (/view/posts/index.php)
+		$this->view->render("polls", "edit");
+	}
+
 	public function confirmChanges() {
-		print_r($_SESSION['currentuser']);
 		if (isset($_POST["poll"])){
-			print_r($_POST["dateList"]);
-			 $this->dateMapper->updateVotes($_POST["dateList"],$_SESSION['currentuser']);
+			 $this->dateMapper->updateVotes($_POST["dateList"],$_SESSION['currentuser'],$_POST["poll"]);
 		}else{
 			$this->view->setVariable("errors", "Undefined Error");
 		}
 		$this->view->redirect("main", "index");
+	}
+
+	private function link($link){
+		if ($this->pollMapper->pollLinkExists($link)){
+			if(!isset($_SESSION['currentuser'])){
+				$_SESSION['link']=$link;
+				$this->view->redirect("users", "login");
+			}else{
+				$pollid = $this->pollMapper->checkUserLink($link);
+				$this->view->redirect("poll", "index", "id=".$pollid);
+			}
+		}else{
+			$this->view->redirect("main", "index");
+		}
 	}
 }

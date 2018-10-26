@@ -55,9 +55,9 @@ class PollMapper {
 	* @throws PDOException if a database error occurs
 	* @return void
 	*/
-  public function delete(Poll $poll){
-    $stmt = $this->db->prepare("DELETE from poll WHERE id=?");
-		$stmt->execute(array($poll->getId()));
+  public function delete($id){
+    $stmt = $this->db->prepare("DELETE from polls WHERE id=?");
+		$stmt->execute(array($id));
   }
 
   /**
@@ -68,7 +68,7 @@ class PollMapper {
 	* @return void
 	*/
   public function update(Poll $poll){
-    $stmt = $this->db->prepare("UPDATE poll set title=?, description=? where id=?");
+    $stmt = $this->db->prepare("UPDATE polls set title=?, description=? where id=?");
     $stmt->execute(array($poll->getTitle(), $poll->getDescription(), $poll->getId()));
   }
 
@@ -170,5 +170,20 @@ class PollMapper {
 		}
 
 		return $users;
+	}
+
+	public function checkUserLink($link){
+		$stmt = $this->db->prepare("SELECT p.id FROM polls p JOIN users_polls u ON p.id = u.id_poll AND p.link = ? AND u.id_user = ?");
+		$stmt->execute(array($link,$_SESSION['currentuser']));
+		$poll = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($poll == NULL){
+			$stmt = $this->db->prepare("SELECT id FROM polls WHERE link = ?");
+			$stmt->execute(array($link));
+			$poll = $stmt->fetch(PDO::FETCH_ASSOC);
+			$stmt = $this->db->prepare("INSERT INTO users_polls(id_user, id_poll) values (?,?)");
+			$stmt->execute(array($_SESSION['currentuser'],$poll["id"]));
+		}
+		return $poll["id"];
 	}
 }

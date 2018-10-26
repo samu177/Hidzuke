@@ -41,6 +41,17 @@ class DateMapper {
     $this->db->commit();
 	}
 
+
+	public function removeDates($dates) {
+    $dates_list = explode(",", $dates);
+    $this->db->beginTransaction();
+    $stmt = $this->db->prepare("DELETE FROM dates WHERE id = ?");
+    for ( $i = 0, $l = count($dates_list); $i < $l; $i++ ) {
+      $stmt->execute(array($dates_list[$i]));
+    }
+    $this->db->commit();
+	}
+
   /**
 	* Loads a Poll from the database given its id
 	*
@@ -51,7 +62,7 @@ class DateMapper {
 	* if the Post is not found
 	*/
 	public function findByPoll($pollId){
-		$stmt = $this->db->prepare("SELECT * FROM dates WHERE id_poll=?");
+		$stmt = $this->db->prepare("SELECT * FROM dates WHERE id_poll=? ORDER BY date, hini, hend ");
 		$stmt->execute(array($pollId));
 		$poll_dates = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if($poll_dates != null) {
@@ -100,7 +111,7 @@ class DateMapper {
 		}
 	}
 
-	public function updateVotes($dates, $idUser){
+	public function updateVotes($dates, $idUser, $idpoll){
 		$dates_list = explode(",", $dates);
     $this->db->beginTransaction();
 		$delete = $this->db->prepare("DELETE from users_dates WHERE id_user=?");
@@ -110,6 +121,72 @@ class DateMapper {
 			if($dates_list[$i] != ''){
 				$stmt->execute(array($idUser,$dates_list[$i]));
 			}
+    }
+		if($this->db->commit()){
+			$this->countVotes($idpoll);
+		}
+	}
+
+	public function updateMostVoteDay($idpoll){
+		$this->countVotes($idpoll);
+	}
+
+	private function countVotes($idpoll){
+		$stmt = $this->db->prepare("SELECT d.id FROM users_dates ud JOIN dates d ON d.id=ud.id_dates AND d.id_poll=?");
+		$stmt->execute(array($idpoll));
+		$votes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$stmt = $this->db->prepare("SELECT id, votes FROM dates WHERE id_poll=?");
+		$stmt->execute(array($idpoll));
+		$days = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+		if($votes != null) {
+			$day_votes = array();
+      foreach ($days as $day) {
+				$day_votes[$day["id"]] = $day["votes"];
+				$count_votes = 0;
+				foreach ($votes as $vote) {
+					if($day["id"] == $vote["id"]){
+						$count_votes++;
+					}
+				}
+				if($day["votes"] > $count_votes){
+					$day_votes[$day["id"]]--;
+
+				}else if($day["votes"] < $count_votes){
+					$day_votes[$day["id"]]++;
+				}
+			}
+
+		}
+		$this->db->beginTransaction();
+		$update = $this->db->prepare("UPDATE dates SET votes = ? WHERE id = ?");
+    foreach ($day_votes as $key => $value) {
+				$update->execute(array($value,$key));
+    }
+		if($this->db->commit()){
+			$this->changePollMostVotedDay($idpoll);
+		}
+
+	}
+
+	private function changePollMostVotedDay($idpoll){
+		$stmt = $this->db->prepare("SELECT date, hini, hend FROM dates WHERE id_poll=? ORDER BY votes DESC, date, hini, hend");
+		$stmt->execute(array($idpoll));
+		$days = $stmt->fetch(PDO::FETCH_ASSOC);
+		$hours = substr($days["hini"],0,-3)." ".substr($days["hend"],0,-3);
+		$update = $this->db->prepare("UPDATE polls SET date = ?, hours= ? WHERE id = ?");
+		$update->execute(array($days["date"], $hours, $idpoll));
+	}
+
+	public function addDates($dates, $idpoll) {
+    $dates_list = explode(".", $dates);
+    $this->db->beginTransaction();
+    $stmt = $this->db->prepare("INSERT INTO dates (date, hini, hend, id_poll) values (?,?,?,?)");
+    for ( $i = 0, $l = count($dates_list); $i < $l; $i++ ) {
+      $v_date = explode("/", $dates_list[$i]);
+      $stmt->execute(array($v_date[0], $v_date[1], $v_date[2], $idpoll));
     }
     $this->db->commit();
 	}

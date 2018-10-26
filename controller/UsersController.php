@@ -27,7 +27,9 @@ class UsersController extends BaseController {
 
 	public function __construct() {
 		parent::__construct();
-
+		if(!isset($_SESSION['__currentlang__'])){
+			$_SESSION['__currentlang__']='es';
+		}
 		$this->userMapper = new UserMapper();
 	}
 
@@ -68,7 +70,9 @@ class UsersController extends BaseController {
 
 				$userid = $this->userMapper->findByMail($_POST["mail"]);
 				$_SESSION["currentuser"]=$userid;
-
+				if(isset($_SESSION['link'])){
+					$this->view->redirect("poll", "index");
+				}
 				$this->view->redirect("main", "index");
 
 			}else{
@@ -176,7 +180,10 @@ class UsersController extends BaseController {
 	* @return void
 	*/
 	public function logout() {
+		$language = $_SESSION['__currentlang__'];
 		session_destroy();
+		session_start();
+		$_SESSION['__currentlang__'] = $language;
 
 		// perform a redirection. More or less:
 		// header("Location: index.php?controller=users&action=login")

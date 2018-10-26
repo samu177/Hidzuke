@@ -27,10 +27,18 @@ $errors = $view->getVariable("errors");
           </div>
           <div class="col-3 col-sm-1 col-md-2 col-lg-1">
             <button class="btn btn-custom-blue btn-flag dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false"><span class="flag-icon flag-icon-es"></span></button>
+              aria-expanded="false">
+              <?php
+              if($_SESSION['__currentlang__']=="es"){
+                echo '<span class="flag-icon flag-icon-es">';
+              }else{
+                echo '<span class="flag-icon flag-icon-gb">';
+              }?>
+              </span>
+            </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> ESPAÑA</a>
-              <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb"></span> Ingles</a>
+              <a class="dropdown-item" href="index.php?controller=language&amp;action=change&amp;lang=es"><span class="flag-icon flag-icon-es"></span><?= i18n("esp")?></a>
+              <a class="dropdown-item" href="index.php?controller=language&amp;action=change&amp;lang=en"><span class="flag-icon flag-icon-gb"></span><?= i18n("eng")?></a>
             </div>
           </div>
           <div class="col-2 ">
@@ -74,7 +82,7 @@ $errors = $view->getVariable("errors");
                 </div>
                 <div class="col-2 date-group">
                   <?php if($poll->getDate() != NULL){?>
-                  <small class="month"><?= $poll->getDate()->format('F')?></small>
+                  <small class="month"><?= i18n($poll->getDate()->format('F'))?></small>
                   <span class="day"><?= $poll->getDate()->format('d')?></span>
                   <?php } ?>
                 </div>
@@ -92,7 +100,7 @@ $errors = $view->getVariable("errors");
     <div class="modal-dialog modal-full-height modal-left" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title w-100" id="myModalLabel">Añadir evento</h4>
+          <h4 class="modal-title w-100" id="myModalLabel"><?= i18n("label_add")?></h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -102,38 +110,38 @@ $errors = $view->getVariable("errors");
         <form action="index.php?controller=main&amp;action=add" method="POST">
           <div class="modal-body">
             <div class="form-group">
-              <label for="poll-title">Titulo</label>
-              <input type="text" class="form-control" id="poll-title" minlength="5" maxlength="50" name="title" placeholder="Introducir título" required>
+              <label for="poll-title"><?= i18n("title")?></label>
+              <input type="text" class="form-control" id="poll-title" minlength="5" maxlength="50" name="title" placeholder="<?= i18n("newtitle")?>" required>
             </div>
             <div class="form-group">
-              <label for="poll-description">Descripción</label>
-              <input type="text" class="form-control" id="poll-description" minlength="5" maxlength="100" name="description" placeholder="Introducir descripción" required>
+              <label for="poll-description"><?= i18n("descript")?></label>
+              <input type="text" class="form-control" id="poll-description" minlength="5" maxlength="100" name="description" placeholder="<?= i18n("newdescript")?>" required>
             </div>
             <div class="form-group">
-              <label for="poll-date-list">Lista de Fechas</label>
+              <label for="poll-date-list"><?= i18n("datelist")?></label>
               <div class="badge-list">
                 <input id="dates" type="text" name="dates" value="" class="d-none">
               </div>
             </div>
             <div class="form-group">
-              <label for="poll-date">Fecha</label>
+              <label for="poll-date"><?= i18n("date")?></label>
               <input type="date" class="form-control" name="date" id="poll-date" form="addDate" required>
             </div>
             <div class="form-group">
-              <label for="poll-hour-init">Hora Inicio</label>
+              <label for="poll-hour-init"><?= i18n("hini")?></label>
               <input type="time" class="form-control" name="hini" id="poll-hour-init" form="addDate" required>
             </div>
             <div class="form-group">
-              <label for="poll-hour-end">Hora Fin</label>
+              <label for="poll-hour-end"><?= i18n("hend")?></label>
               <input type="time" class="form-control" name="hfin" id="poll-hour-end" form="addDate" required>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-success" form="addDate">Añadir Fecha</button>
+              <button type="submit" class="btn btn-success" form="addDate"><?= i18n("addDate")?></button>
               </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-custom-orange" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-custom-blue">Crear Evento</button>
+            <button type="button" class="btn btn-custom-orange" data-dismiss="modal"><?= i18n("close")?></button>
+            <button type="submit" class="btn btn-custom-blue"><?= i18n("addEvent")?></button>
           </div>
         </form>
       </div>

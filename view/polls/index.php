@@ -20,10 +20,15 @@ $usersDates = $view->getVariable("usersDates");
           </div>
           <div class="col-3 col-sm-1 col-md-2 col-lg-1">
             <button class="btn btn-custom-blue btn-flag dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false"><span class="flag-icon flag-icon-es"></span></button>
+              aria-expanded="false"><?php
+              if($_SESSION['__currentlang__']=="es"){
+                echo '<span class="flag-icon flag-icon-es">';
+              }else{
+                echo '<span class="flag-icon flag-icon-gb">';
+              }?></span></button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> ESPAÑA</a>
-              <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb"></span> Ingles</a>
+              <a class="dropdown-item" href="index.php?controller=language&amp;action=change&amp;lang=es"><span class="flag-icon flag-icon-es"></span><?= i18n("esp")?></a>
+              <a class="dropdown-item" href="index.php?controller=language&amp;action=change&amp;lang=en"><span class="flag-icon flag-icon-gb"></span><?= i18n("eng")?></a>
             </div>
           </div>
           <div class="col-2 ">
@@ -48,10 +53,10 @@ $usersDates = $view->getVariable("usersDates");
     <span class="poll-view-description"><?=$poll->getDescription()?></span>
   </div>
   <div class="row ">
-    <span class="poll-view-description poll-link"><b>Compartir:</b> Hidzuke/index.php?controller=poll&action=link&link=<?=$poll->getLink()?></span>
+    <span class="poll-view-description poll-link"><b><?= i18n("share")?></b> Hidzuke/index.php?controller=poll&link=<?=$poll->getLink()?></span>
   </div>
   <div class="row ">
-    <span class="poll-view-description">Día mas votado: <b><?= ( $poll->getDate() != NULL ? $poll->getDate()->format('d-F-Y')." de ".$poll->getHours() : 'no se ha votado ningun día')?></b></span>
+    <span class="poll-view-description"><?= i18n("mostVoted")?> <b><?= ( $poll->getDate() != NULL ? $poll->getDate()->format('d')."-".i18n($poll->getDate()->format('F'))."-".$poll->getDate()->format('Y')." ".i18n("from")." ".$poll->getHours() : i18n("notVoted"))?></b></span>
   </div>
   <div class="row align-items-center table-content">
     <div class="table-container square scrollbar-blue bordered-blue">
@@ -62,9 +67,9 @@ $usersDates = $view->getVariable("usersDates");
             <?php foreach ($dates as $date) {?>
               <th>
                 <input type="hidden" id="date<?= $date->getId()?>" value="<?= $date->getId()?>">
-                <small class="month"><?= $date->getDay()->format('F')?></small>
+                <small class="month"><?= i18n($date->getDay()->format('F'))?></small>
                 <span class="day"><?= $date->getDay()->format('d')?></span>
-                <small class="month"><?= $date->getDay()->format('D')?></small>
+                <small class="month"><?= i18n($date->getDay()->format('D'))?></small>
                 <small class="month"><?= substr($date->getHini(),0,-3)?></small>
                 <small class="month"><?= substr($date->getHend(),0,-3)?></small>
               </th>
@@ -97,9 +102,15 @@ $usersDates = $view->getVariable("usersDates");
             <?php } ?>
           </tr>
           <tr class="people-list">
-            <?php foreach ($dates as $date) {?>
+            <?php foreach ($dates as $date) {
+              if(!array_key_exists( $date->getId(), $usersDates)){
+                $data="";
+              }else{
+                $data=implode(',',$usersDates[$date->getId()]);
+              }
+              ?>
               <td>
-                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm" data-users="<?= implode(',',$usersDates[$date->getId()])?>">
+                <a class="btn btn-custom-blue"  href="#" data-toggle="modal" data-target="#centralModalSm" data-users="<?=$data?>">
                   <i class="fas fa-user"></i>
                 </a>
               </td>
@@ -109,7 +120,7 @@ $usersDates = $view->getVariable("usersDates");
       </table>
     <?php }else{ ?>
       <div class="row ">
-        <span class="poll-view-description">Ningun día ha sido añadido</span>
+        <span class="poll-view-description"><?= i18n("noDays")?></span>
       </div>
     <?php } ?>
     </div>
@@ -121,7 +132,7 @@ $usersDates = $view->getVariable("usersDates");
         <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title w-100" id="myModalLabel">Lista votos</h4>
+              <h4 class="modal-title w-100" id="myModalLabel"><?= i18n("label_votes")?></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -140,9 +151,9 @@ $usersDates = $view->getVariable("usersDates");
         <input type="hidden" id="dateList" name="dateList" value="">
         <div class="form-group">
           <?php if (count($dates) != 0) {?>
-            <button type="submit" class="btn btn-lg btn-custom-orange">Confirmar</button>
+            <button type="submit" class="btn btn-lg btn-custom-orange"><?= i18n("confirm")?></button>
           <?php } if ($user == $poll->getId_user()) {?>
-            <a class="btn btn-lg mx-auto btn-custom-blue" href="#">Editar</a>
+            <a class="btn btn-lg mx-auto btn-custom-blue" href="index.php?controller=poll&action=edit&id=<?=$poll->getId()?>"><?= i18n("edit")?></a>
           <?php } ?>
         </div>
       </form>

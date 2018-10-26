@@ -17,34 +17,39 @@ $view->setVariable("title", "Register");
 				</div>
 				<div class="col-3 offset-2 offset-sm-3">
 					<button class="btn btn-custom-blue btn-flag dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"><span class="flag-icon flag-icon-es"></span></button>
+						aria-expanded="false"><?php
+						if($_SESSION['__currentlang__']=="es"){
+							echo '<span class="flag-icon flag-icon-es">';
+						}else{
+							echo '<span class="flag-icon flag-icon-gb">';
+						}?></span></button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> ESPAÑA</a>
-						<a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb"></span> Ingles</a>
+						<a class="dropdown-item" href="index.php?controller=language&amp;action=change&amp;lang=es"><span class="flag-icon flag-icon-es"></span><?= i18n("esp")?></a>
+						<a class="dropdown-item" href="index.php?controller=language&amp;action=change&amp;lang=en"><span class="flag-icon flag-icon-gb"></span><?= i18n("eng")?></a>
 					</div>
 				</div>
 			</div>
 			<form class="login-form" action="index.php?controller=users&amp;action=register" method="POST">
 				<div class="form-group">
-					<h3 class="underline">Datos de registro:</h3>
+					<h3 class="underline"><?= i18n("label_signin")?></h3>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputName">Nombre</label>
-					<input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Insertar nombre" pattern="[A-Za-z]" title="Solo letras por favor" required>
+					<label for="exampleInputName"><?= i18n("name")?></label>
+					<input type="text" class="form-control" id="exampleInputName" name="name" placeholder="<?= i18n("newname")?>" pattern="[A-Za-z]{1,}" title="Solo letras por favor" required>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Correo electrónico</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mail" placeholder="Insertar correo electrónico" required>
+					<label for="exampleInputEmail1"><?= i18n("mail")?></label>
+					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mail" placeholder="<?= i18n("newmail")?>" required>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1">Contraseña</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" name="pwd" placeholder="Contraseña" required>
+					<label for="exampleInputPassword1"><?= i18n("pwd")?></label>
+					<input type="password" class="form-control" id="exampleInputPassword1" name="pwd" placeholder="<?= i18n("pwd")?>" required>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword2">Confirmar Contraseña</label>
-					<input type="password" class="form-control" id="exampleInputPassword2" name="pwd2" placeholder="Contraseña" required>
+					<label for="exampleInputPassword2"><?= i18n("pwdconfirm")?></label>
+					<input type="password" class="form-control" id="exampleInputPassword2" name="pwd2" placeholder="<?= i18n("pwd")?>" required>
 				</div>
-				<button type="submit" class="btn btn-custom-blue btn-login">Aceptar</button>
+				<button type="submit" class="btn btn-custom-blue btn-login"><?= i18n("accept")?></button>
 			</form>
 		</div>
 	</div>

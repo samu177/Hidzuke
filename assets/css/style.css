@@ -351,6 +351,12 @@ a.remove-date:hover{
   margin: 0px;
 }
 
+#view-edit .row .badge-list{
+  text-align: center;
+  margin: 30px 20% 0;
+  width: 100%;
+}
+
 .view-header img{
   height: 80%;
   margin-top: 10px;
@@ -441,7 +447,7 @@ a.remove-date:hover{
   font-size: 1.5em;
 }
 
-.poll-table thead tr th .poll-remove .fas{
+.poll-table thead tr th a{
   position: relative;
   margin-left: 95px;
   margin-top: -15px;
