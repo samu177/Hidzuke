@@ -114,8 +114,8 @@ class DateMapper {
 	public function updateVotes($dates, $idUser, $idpoll){
 		$dates_list = explode(",", $dates);
     $this->db->beginTransaction();
-		$delete = $this->db->prepare("DELETE from users_dates WHERE id_user=?");
-		$delete->execute(array($idUser));
+		$delete = $this->db->prepare("DELETE u from users_dates u JOIN dates d ON d.id=u.id_dates WHERE id_user=? AND d.id_poll=?");
+		$delete->execute(array($idUser,$idpoll));
 		$stmt = $this->db->prepare("INSERT INTO users_dates (id_user, id_dates) values (?,?)");
     for ( $i = 0, $l = count($dates_list); $i < $l; $i++ ) {
 			if($dates_list[$i] != ''){
@@ -141,16 +141,18 @@ class DateMapper {
 		$days = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-		if($votes != null) {
+		if($days != null) {
 			$day_votes = array();
       foreach ($days as $day) {
 				$day_votes[$day["id"]] = $day["votes"];
 				$count_votes = 0;
 				foreach ($votes as $vote) {
+					print_r($vote["id"]);
 					if($day["id"] == $vote["id"]){
 						$count_votes++;
 					}
 				}
+
 				if($day["votes"] > $count_votes){
 					$day_votes[$day["id"]]--;
 
@@ -158,7 +160,6 @@ class DateMapper {
 					$day_votes[$day["id"]]++;
 				}
 			}
-
 		}
 		$this->db->beginTransaction();
 		$update = $this->db->prepare("UPDATE dates SET votes = ? WHERE id = ?");

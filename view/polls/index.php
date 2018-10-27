@@ -53,7 +53,7 @@ $usersDates = $view->getVariable("usersDates");
     <span class="poll-view-description"><?=$poll->getDescription()?></span>
   </div>
   <div class="row ">
-    <span class="poll-view-description poll-link"><b><?= i18n("share")?></b> Hidzuke/index.php?controller=poll&link=<?=$poll->getLink()?></span>
+    <span class="poll-view-description poll-link"><b><?= i18n("share")?></b> localhost/Hidzuke/index.php?controller=poll&link=<?=$poll->getLink()?></span>
   </div>
   <div class="row ">
     <span class="poll-view-description"><?= i18n("mostVoted")?> <b><?= ( $poll->getDate() != NULL ? $poll->getDate()->format('d')."-".i18n($poll->getDate()->format('F'))."-".$poll->getDate()->format('Y')." ".i18n("from")." ".$poll->getHours() : i18n("notVoted"))?></b></span>

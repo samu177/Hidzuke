@@ -63,7 +63,7 @@ $usersDates = $view->getVariable("usersDates");
       </div>
     </div>
     <div class="row ">
-      <span class="poll-view-description poll-link"><b><?= i18n("share")?></b> Hidzuke/index.php?controller=poll&link=<?=$poll->getLink()?></span>
+      <span class="poll-view-description poll-link"><b><?= i18n("share")?></b> localhost/Hidzuke/index.php?controller=poll&link=<?=$poll->getLink()?></span>
     </div>
     <div class="row ">
       <div class="badge-list">

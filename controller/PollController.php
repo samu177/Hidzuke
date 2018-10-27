@@ -73,6 +73,9 @@ class PollController extends BaseController {
 
 		// obtain the data from the database
 		$poll = $this->pollMapper->findById($pollid);
+		if($poll == NULL){
+			$this->view->redirect("main", "index");
+		}
     $dates = $this->dateMapper->findByPoll($pollid);
 		$usersDates = $this->dateMapper->findUsersDates($pollid);
 		$usersList = $this->pollMapper->getPollUser($poll->getId());

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2018 a las 22:04:28
+-- Tiempo de generación: 27-10-2018 a las 19:05:09
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -44,8 +44,10 @@ CREATE TABLE `dates` (
 --
 
 INSERT INTO `dates` (`id`, `date`, `hini`, `hend`, `votes`, `id_poll`) VALUES
-(6, '2018-01-31', '00:00:00', '00:00:00', 0, 26),
-(8, '2018-10-10', '07:00:00', '16:00:00', 5, 26);
+(28, '2018-10-29', '22:00:00', '00:00:00', 3, 35),
+(29, '2018-10-30', '22:00:00', '00:00:00', 2, 35),
+(30, '2018-10-31', '21:00:00', '00:00:00', 3, 35),
+(33, '2018-10-29', '12:30:00', '14:30:00', 2, 38);
 
 -- --------------------------------------------------------
 
@@ -68,13 +70,8 @@ CREATE TABLE `polls` (
 --
 
 INSERT INTO `polls` (`id`, `title`, `description`, `link`, `id_user`, `date`, `hours`) VALUES
-(1, 'title1', 'desc1', 'link1', 1, '2018-10-27', '11:00 12:00'),
-(2, 'title2', 'desc2', 'link2', 3, NULL, NULL),
-(26, 'Prueba 1', 'Descripcion 1', '707FPDO4qQ', 3, NULL, NULL),
-(27, 'asdqweqwer', 'asdasfgdhjgfhkhk', 'c9Enh3Emi1', 3, NULL, NULL),
-(28, 'asdqweqwer', 'asdasfgdhjgfhkhk', 'vfvkyCdBCe', 3, NULL, NULL),
-(29, 'asdqweqwer', 'asdasfgdhjgfhkhk', '9lO4pBxdOh', 3, NULL, NULL),
-(30, 'asdqweqwer', 'asdasfgdhjgfhkhk', 'BCC4nSlOjR', 3, NULL, NULL);
+(35, 'Cena ', 'Elegir el día que mejor os convenga', 'clUeAfEbsi', 9, '2018-10-29', '22:00 00:00'),
+(38, 'Matrícula TSW', 'PLS PLS', 'hD227ARzrb', 11, '2018-10-29', '12:30 14:30');
 
 -- --------------------------------------------------------
 
@@ -95,8 +92,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `pwd`, `mail`) VALUES
 (1, 'admin', 'admin', 'admin@admin.com'),
-(3, 'samuel', 'samuel', 'samusoto177@gmail.com'),
-(4, 'Victor', 'aaaaaa', 'samu.17_@hotmail.com');
+(9, 'Victor', 'victor', 'victor@gmail.com'),
+(10, 'Samuel', 'samuel', 'samuel@gmail.com'),
+(11, 'Lipido', 'lipido', 'lipido@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -108,6 +106,22 @@ CREATE TABLE `users_dates` (
   `id_user` int(11) NOT NULL,
   `id_dates` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `users_dates`
+--
+
+INSERT INTO `users_dates` (`id_user`, `id_dates`) VALUES
+(9, 28),
+(9, 30),
+(9, 33),
+(10, 28),
+(10, 29),
+(10, 30),
+(10, 33),
+(11, 28),
+(11, 29),
+(11, 30);
 
 -- --------------------------------------------------------
 
@@ -125,14 +139,12 @@ CREATE TABLE `users_polls` (
 --
 
 INSERT INTO `users_polls` (`id_user`, `id_poll`) VALUES
-(1, 1),
-(3, 1),
-(3, 2),
-(3, 26),
-(3, 27),
-(3, 28),
-(3, 29),
-(3, 30);
+(9, 35),
+(9, 38),
+(10, 35),
+(10, 38),
+(11, 35),
+(11, 38);
 
 --
 -- Índices para tablas volcadas
@@ -165,7 +177,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users_dates`
   ADD PRIMARY KEY (`id_user`,`id_dates`),
-  ADD KEY `id_dates` (`id_dates`);
+  ADD KEY `id_dates` (`id_dates`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indices de la tabla `users_polls`
@@ -182,19 +195,19 @@ ALTER TABLE `users_polls`
 -- AUTO_INCREMENT de la tabla `dates`
 --
 ALTER TABLE `dates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `polls`
 --
 ALTER TABLE `polls`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
