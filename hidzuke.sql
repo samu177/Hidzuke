@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2018 a las 19:05:09
+-- Tiempo de generación: 27-10-2018 a las 19:08:00
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -21,8 +21,16 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hidzuke`
 --
+DROP DATABASE IF EXISTS `hidzuke`;
 CREATE DATABASE IF NOT EXISTS `hidzuke` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `hidzuke`;
+
+-- --------------------------------------------------------
+
+--
+-- Usuario de la base de datos: `hidzuke`
+--
+GRANT ALL PRIVILEGES ON *.* TO 'hidzuke_user'@'localhost' IDENTIFIED BY PASSWORD '*A9BB3B8CDD4B81C8B3B72EE6DB8A1EC2B4AA1008' WITH GRANT OPTION;
 
 -- --------------------------------------------------------
 
@@ -30,6 +38,7 @@ USE `hidzuke`;
 -- Estructura de tabla para la tabla `dates`
 --
 
+DROP TABLE IF EXISTS `dates`;
 CREATE TABLE `dates` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -55,6 +64,7 @@ INSERT INTO `dates` (`id`, `date`, `hini`, `hend`, `votes`, `id_poll`) VALUES
 -- Estructura de tabla para la tabla `polls`
 --
 
+DROP TABLE IF EXISTS `polls`;
 CREATE TABLE `polls` (
   `id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
@@ -79,6 +89,7 @@ INSERT INTO `polls` (`id`, `title`, `description`, `link`, `id_user`, `date`, `h
 -- Estructura de tabla para la tabla `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -102,6 +113,7 @@ INSERT INTO `users` (`id`, `name`, `pwd`, `mail`) VALUES
 -- Estructura de tabla para la tabla `users_dates`
 --
 
+DROP TABLE IF EXISTS `users_dates`;
 CREATE TABLE `users_dates` (
   `id_user` int(11) NOT NULL,
   `id_dates` int(11) NOT NULL
@@ -129,6 +141,7 @@ INSERT INTO `users_dates` (`id_user`, `id_dates`) VALUES
 -- Estructura de tabla para la tabla `users_polls`
 --
 
+DROP TABLE IF EXISTS `users_polls`;
 CREATE TABLE `users_polls` (
   `id_user` int(11) NOT NULL,
   `id_poll` int(11) NOT NULL
